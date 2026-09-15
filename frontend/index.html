@@ -358,9 +358,7 @@
               localStorage.setItem('transit_token', data.token);
               localStorage.setItem('transit_user', JSON.stringify(data.user));
               
-              if (data.user.mustChangePassword) {
-                window.location.href = 'reset-password.html';
-              } else if (data.user.role === 'CONDUCTOR') {
+              if (data.user.role === 'CONDUCTOR') {
                 window.location.href = 'conductor-scan.html';
               } else {
                 window.location.href = 'dashboard.html';

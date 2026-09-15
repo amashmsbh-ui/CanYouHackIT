@@ -81,7 +81,7 @@ async function autoInitDatabase(prisma) {
                   email,
                   passwordHash,
                   role: 'STUDENT',
-                  mustChangePassword: true,
+                  mustChangePassword: false,
                   active: true
                 }
               });
@@ -94,6 +94,12 @@ async function autoInitDatabase(prisma) {
         console.warn('[DB Init] Could not read Excel file:', excelErr.message);
       }
     }
+
+    // Ensure all users do not get forced into password reset screen
+    await prisma.user.updateMany({
+      where: { mustChangePassword: true },
+      data: { mustChangePassword: false }
+    });
 
     // 3. Ensure Default Bus and Route exist
     const bus = await prisma.bus.upsert({
