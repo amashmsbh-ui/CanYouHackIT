@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>Notifications | IIITDMJ Smart Transit & Live Ticket System</title>
+  <link href="https://fonts.googleapis.com" rel="preconnect"/>
+  <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600;700&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "on-primary": "#ffffff",
+            "status-gold-light": "#FEF3C7",
+            "on-tertiary-fixed": "#002113",
+            "on-primary-container": "#7490c3",
+            "primary-container": "#002855",
+            "secondary-fixed": "#cce5ff",
+            "tertiary": "#00190e",
+            "ticket-hologram-violet": "#8B5CF6",
+            "surface-container": "#e0f0ff",
+            "status-gold": "#F59E0B",
+            "on-secondary-container": "#00476e",
+            "surface-container-low": "#ebf5ff",
+            "surface": "#f6faff",
+            "on-surface": "#0e1d28",
+            "institute-navy-mid": "#1E3E62",
+            "tertiary-fixed-dim": "#4edea3",
+            "outline": "#747780",
+            "surface-container-high": "#daeaf9",
+            "background": "#f6faff",
+            "on-tertiary-fixed-variant": "#005236",
+            "status-mint-subtle": "#ECFDF5",
+            "error-container": "#ffdad6",
+            "secondary-container": "#5bb8fe",
+            "surface-variant": "#d4e4f3",
+            "primary-fixed": "#d6e3ff",
+            "surface-dim": "#ccdceb",
+            "transit-blue-subtle": "#E0F2FE",
+            "tertiary-container": "#00301e",
+            "on-secondary": "#ffffff",
+            "inverse-on-surface": "#e5f2ff",
+            "on-error": "#ffffff",
+            "inverse-primary": "#aac7fd",
+            "on-error-container": "#93000a",
+            "on-surface-variant": "#43474f",
+            "primary-fixed-dim": "#aac7fd",
+            "surface-tint": "#415f8f",
+            "institute-navy-dark": "#0B192C",
+            "outline-variant": "#c4c6d0",
+            "surface-card": "#FFFFFF",
+            "surface-bright": "#f6faff",
+            "surface-canvas": "#F8FAFC",
+            "error": "#ba1a1a",
+            "primary": "#001430",
+            "surface-glass-border": "rgba(255, 255, 255, 0.45)",
+            "secondary-fixed-dim": "#93ccff",
+            "on-tertiary": "#ffffff",
+            "surface-container-highest": "#d4e4f3",
+            "tertiary-fixed": "#6ffbbe",
+            "on-tertiary-container": "#00a472",
+            "on-secondary-fixed-variant": "#004b73",
+            "surface-container-lowest": "#ffffff",
+            "inverse-surface": "#23323d",
+            "on-background": "#0e1d28",
+            "secondary": "#006398",
+            "on-secondary-fixed": "#001d31",
+            "on-primary-fixed": "#001b3d",
+            "transit-blue-glow": "#38BDF8",
+            "on-primary-fixed-variant": "#284775",
+            "status-mint-glow": "#34D399",
+            "ticket-hologram-cyan": "#06B6D4"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          "spacing": {
+            "space-xl": "2.25rem",
+            "space-md": "1rem",
+            "space-lg": "1.5rem",
+            "margin-desktop": "3rem",
+            "gutter": "1rem",
+            "space-xs": "0.25rem",
+            "space-sm": "0.5rem",
+            "gutter-desktop": "1.5rem",
+            "margin-tablet": "2rem",
+            "margin": "1rem"
+          },
+          "fontFamily": {
+            "label-mono-xs": ["JetBrains Mono"],
+            "headline-lg-mobile": ["Space Grotesk"],
+            "display-hero-mobile": ["Space Grotesk"],
+            "title-sm": ["Inter"],
+            "ticker-lg": ["JetBrains Mono"],
+            "label-mono": ["JetBrains Mono"],
+            "headline-lg": ["Space Grotesk"],
+            "headline-md": ["Space Grotesk"],
+            "ticker-md": ["JetBrains Mono"],
+            "body-md": ["Inter"],
+            "display-hero": ["Space Grotesk"],
+            "body-lg": ["Inter"],
+            "body-sm": ["Inter"]
+          },
+          "fontSize": {
+            "label-mono-xs": ["10px", { "lineHeight": "12px", "letterSpacing": "0.08em", "fontWeight": "600" }],
+            "headline-lg-mobile": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+            "display-hero-mobile": ["30px", { "lineHeight": "36px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+            "title-sm": ["16px", { "lineHeight": "24px", "letterSpacing": "0em", "fontWeight": "600" }],
+            "ticker-lg": ["28px", { "lineHeight": "32px", "letterSpacing": "-0.04em", "fontWeight": "700" }],
+            "label-mono": ["12px", { "lineHeight": "16px", "letterSpacing": "0.04em", "fontWeight": "500" }],
+            "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+            "headline-md": ["20px", { "lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+            "ticker-md": ["18px", { "lineHeight": "24px", "letterSpacing": "-0.02em", "fontWeight": "600" }],
+            "body-md": ["14px", { "lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "400" }],
+            "display-hero": ["40px", { "lineHeight": "48px", "letterSpacing": "-0.03em", "fontWeight": "700" }],
+            "body-lg": ["16px", { "lineHeight": "24px", "letterSpacing": "0em", "fontWeight": "400" }],
+            "body-sm": ["12px", { "lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "400" }]
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      display: inline-block;
+      vertical-align: middle;
+      line-height: 1;
+    }
+    .notification-unread {
+      background-color: rgba(56, 189, 248, 0.08);
+      border-left: 3px solid #38BDF8;
+    }
+    .notification-read {
+      background-color: transparent;
+      border-left: 3px solid transparent;
+    }
+    .notification-icon-booking {
+      background-color: rgba(245, 158, 11, 0.15);
+      color: #F59E0B;
+    }
+    .notification-icon-departure {
+      background-color: rgba(52, 211, 153, 0.15);
+      color: #34D399;
+    }
+  </style>
+</head>
+<body class="bg-surface-canvas text-on-surface font-body-md text-body-md antialiased selection:bg-secondary-container selection:text-on-secondary-container">
+  <!-- HEADER -->
+  <header class="bg-primary-container dark:bg-institute-navy-dark text-on-primary dark:text-primary-fixed sticky top-0 z-50 border-b border-surface-glass-border shadow-md">
+    <div class="flex justify-between items-center w-full px-space-md md:px-margin-desktop max-w-7xl mx-auto h-16">
+      <div class="flex items-center gap-space-sm">
+        <div class="w-9 h-9 rounded-lg bg-institute-navy-mid flex items-center justify-center text-transit-blue-glow shadow-inner border border-transit-blue-glow/30">
+          <span class="material-symbols-outlined" data-icon="directions_bus">directions_bus</span>
+        </div>
+        <div class="flex flex-col">
+          <span class="text-headline-md font-headline-md font-bold tracking-tight text-on-primary dark:text-primary-fixed">IIITDMJ Transit</span>
+          <div class="flex items-center gap-1.5">
+            <span class="w-2 h-2 rounded-full bg-status-mint-glow animate-ping"></span>
+            <span class="text-label-mono-xs font-label-mono-xs text-secondary-fixed">Server Sync: Online</span>
+          </div>
+        </div>
+      </div>
+      <nav class="hidden md:flex items-center gap-space-lg">
+        <a class="text-on-primary-container dark:text-outline-variant font-medium hover:text-transit-blue-glow dark:hover:text-secondary-fixed transition-colors duration-150" href="dashboard.html">Dashboard</a>
+        <a class="text-on-primary-container dark:text-outline-variant font-medium hover:text-transit-blue-glow dark:hover:text-secondary-fixed transition-colors duration-150" href="tickets.html">My Passes</a>
+        <a class="text-on-primary-container dark:text-outline-variant font-medium hover:text-transit-blue-glow dark:hover:text-secondary-fixed transition-colors duration-150" href="checkout.html">Quick Booking</a>
+      </nav>
+      <div class="flex items-center gap-space-sm md:gap-space-md">
+        <button class="p-1.5 rounded-lg hover:text-on-primary transition-colors" title="Notifications" aria-label="Notifications" onclick="window.location.href='notifications.html'">
+          <span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+        </button>
+        <button class="p-1.5 rounded-lg hover:text-on-primary transition-colors" title="Account" aria-label="Account" onclick="window.location.href='account.html'">
+          <span class="material-symbols-outlined" data-icon="account_circle">account_circle</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main class="max-w-7xl mx-auto px-space-md md:px-margin-desktop py-space-lg">
+    <!-- Breadcrumb -->
+    <nav aria-label="Breadcrumb" class="mb-space-lg">
+      <div class="flex items-center space-x-2 text-label-mono font-label-mono">
+        <a class="text-outline hover:text-primary transition-colors flex items-center gap-1" href="dashboard.html">
+          <span class="material-symbols-outlined text-sm" data-icon="dashboard">dashboard</span>
+          <span>Dashboard</span>
+        </a>
+        <span class="text-outline-variant">/</span>
+        <span class="text-primary font-semibold">Notifications</span>
+      </div>
+    </nav>
+
+    <!-- Page Header -->
+    <div class="mb-space-lg flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+      <div>
+        <h1 class="text-headline-lg font-headline-lg text-on-surface font-semibold">Notifications</h1>
+        <p class="text-body-sm text-on-surface-variant mt-1">Stay updated with booking reminders and trip alerts.</p>
+      </div>
+      <button id="markAllRead" class="px-space-md py-2 rounded-lg bg-primary-container text-on-primary hover:bg-institute-navy-mid transition-colors flex items-center gap-2 self-start sm:self-auto">
+        <span class="material-symbols-outlined text-lg" data-icon="done_all">done_all</span>
+        <span class="text-label-mono-xs font-label-mono-xs font-semibold">Mark all as read</span>
+      </button>
+    </div>
+
+    <!-- Filter Tabs -->
+    <div class="mb-space-lg flex items-center gap-2 flex-wrap">
+      <button class="filter-tab active px-4 py-2 rounded-lg bg-primary-container text-on-primary font-label-mono-xs font-label-mono-xs font-semibold border border-transparent" data-filter="all">
+        All Notifications
+      </button>
+      <button class="filter-tab px-4 py-2 rounded-lg bg-surface-card border border-outline-variant/40 text-on-surface-variant hover:bg-surface-container-low font-label-mono-xs font-label-mono-xs font-semibold transition-colors" data-filter="unread">
+        Unread
+      </button>
+      <button class="filter-tab px-4 py-2 rounded-lg bg-surface-card border border-outline-variant/40 text-on-surface-variant hover:bg-surface-container-low font-label-mono-xs font-label-mono-xs font-semibold transition-colors" data-filter="booking">
+        Booking Reminders
+      </button>
+      <button class="filter-tab px-4 py-2 rounded-lg bg-surface-card border border-outline-variant/40 text-on-surface-variant hover:bg-surface-container-low font-label-mono-xs font-label-mono-xs font-semibold transition-colors" data-filter="departure">
+        Departure Alerts
+      </button>
+    </div>
+
+    <!-- Notifications Container -->
+    <div class="space-y-3">
+      <!-- Empty State -->
+      <div id="emptyState" class="hidden text-center py-16">
+        <span class="material-symbols-outlined text-6xl text-surface-variant mx-auto block mb-4">notifications_none</span>
+        <h3 class="text-title-sm font-title-sm text-on-surface-variant font-semibold">You're all caught up</h3>
+        <p class="text-body-sm text-on-surface-variant mt-2">No transit alerts right now.</p>
+      </div>
+
+      <!-- Notifications List -->
+      <div id="notificationsList">
+        <!-- Notifications will be injected here -->
+      </div>
+    </div>
+
+    <!-- Notification History Link -->
+    <div class="mt-space-lg pt-space-lg border-t border-outline-variant/30">
+      <a href="#" class="flex items-center gap-2 text-secondary hover:text-primary transition-colors font-label-mono-xs font-label-mono-xs font-semibold">
+        <span class="material-symbols-outlined text-sm">history</span>
+        View notification history
+      </a>
+    </div>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="bg-primary dark:bg-institute-navy-dark text-on-primary dark:text-primary-fixed border-t border-primary-container dark:border-institute-navy-mid mt-space-xl">
+    <div class="w-full py-space-lg px-space-md md:px-margin-desktop max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-space-md">
+      <div class="flex flex-col items-center md:items-start">
+        <span class="text-title-sm font-title-sm font-bold text-on-primary">IIITDMJ Transit</span>
+        <p class="text-body-sm font-body-sm text-outline-variant mt-1">© 2025 PDPM IIITDM Jabalpur. Smart Campus Fleet & Transit Automation Division.</p>
+      </div>
+      <nav class="flex flex-wrap justify-center gap-x-6 gap-y-2 text-body-sm font-body-sm">
+        <a class="text-outline-variant hover:text-transit-blue-glow transition-colors duration-150" href="#">Privacy</a>
+        <a class="text-outline-variant hover:text-transit-blue-glow transition-colors duration-150" href="#">Terms</a>
+        <a class="text-outline-variant hover:text-transit-blue-glow transition-colors duration-150" href="#">Support</a>
+      </nav>
+    </div>
+  </footer>
+
+  <script>
+    // Mock Notifications Data - Backend will replace this
+    const mockNotifications = [
+      {
+        id: "NOTIF-001",
+        userId: "STU-2022-001",
+        type: "BOOKING_REMINDER",
+        title: "Bus Booking Opens Soon",
+        message: "Booking for the upcoming Bus slot opens at 02:15 PM. You can reserve your seat in 30 minutes.",
+        scheduledFor: "2026-09-12T02:15:00Z",
+        createdAt: "2026-09-12T01:45:00Z",
+        read: false,
+        tripId: "TRIP-002",
+        metadata: {
+          busNumber: "Bus #2",
+          destination: "Railway Station (Jabalpur Junction)",
+          departureTime: "02:30 PM",
+          timeUntilBooking: "30 mins"
+        }
+      },
+      {
+        id: "NOTIF-002",
+        userId: "STU-2022-001",
+        type: "TRIP_DEPARTURE_ALERT",
+        title: "Your Bus Departs in 15 Minutes",
+        message: "Bus No. 1 departs for Sadar Market via Russell Chowk at 05:15 PM. Please proceed to the boarding point.",
+        scheduledFor: "2026-09-12T05:00:00Z",
+        createdAt: "2026-09-12T04:50:00Z",
+        read: false,
+        tripId: "TRIP-001",
+        metadata: {
+          busNumber: "Bus #1",
+          destination: "Sadar Market",
+          departureTime: "05:15 PM",
+          boardingPoint: "Bay 1 • Central Mess",
+          timeUntilDeparture: "15 mins"
+        }
+      },
+      {
+        id: "NOTIF-003",
+        userId: "STU-2022-001",
+        type: "BOOKING_REMINDER",
+        title: "Bus Booking Opens Soon",
+        message: "Booking for the upcoming Bus slot opens at 08:00 AM. You can reserve your seat in 30 minutes.",
+        scheduledFor: "2026-09-12T08:00:00Z",
+        createdAt: "2026-09-12T07:30:00Z",
+        read: true,
+        tripId: "TRIP-003",
+        metadata: {
+          busNumber: "Bus #3",
+          destination: "City Center",
+          departureTime: "08:15 AM",
+          timeUntilBooking: "30 mins"
+        }
+      },
+      {
+        id: "NOTIF-004",
+        userId: "STU-2022-001",
+        type: "TRIP_DEPARTURE_ALERT",
+        title: "Your Bus Departs in 15 Minutes",
+        message: "Bus No. 2 departs for Railway Station via High Court Chowk at 12:00 PM. Please proceed to the boarding point.",
+        scheduledFor: "2026-09-12T11:45:00Z",
+        createdAt: "2026-09-12T11:30:00Z",
+        read: true,
+        tripId: "TRIP-004",
+        metadata: {
+          busNumber: "Bus #2",
+          destination: "Railway Station",
+          departureTime: "12:00 PM",
+          boardingPoint: "Bay 2 • Main Gate",
+          timeUntilDeparture: "15 mins"
+        }
+      }
+    ];
+
+    let currentFilter = 'all';
+    let notifications = [];
+
+    function getUnreadCount() {
+      return notifications.filter(n => !n.read).length;
+    }
+
+    function getNotificationIcon(type) {
+      return type === 'BOOKING_REMINDER' ? 'schedule' : 'directions_bus';
+    }
+
+    function getNotificationMetadata(type, notif) {
+      if (type === 'BOOKING_REMINDER') {
+        return `BOOKING REMINDER`;
+      } else {
+        return `TRIP ALERT`;
+      }
+    }
+
+    function getNotificationClass(type) {
+      return type === 'BOOKING_REMINDER' ? 'notification-icon-booking' : 'notification-icon-departure';
+    }
+
+    async function loadNotifications() {
+      try {
+        const response = await window.apiFetch('/api/notifications');
+        if (response.ok) {
+          notifications = await response.json();
+          renderNotifications();
+          updateNotificationBadge();
+        }
+      } catch (err) {
+        console.error('Failed to load notifications', err);
+      }
+    }
+
+    function renderNotifications() {
+      const notificationsList = document.getElementById('notificationsList');
+      const emptyState = document.getElementById('emptyState');
+
+      // Filter notifications
+      let filtered = notifications;
+      if (currentFilter === 'unread') {
+        filtered = notifications.filter(n => !n.read);
+      } else if (currentFilter === 'booking') {
+        filtered = notifications.filter(n => n.type === 'BOOKING_REMINDER');
+      } else if (currentFilter === 'departure') {
+        filtered = notifications.filter(n => n.type === 'TRIP_DEPARTURE_ALERT');
+      }
+
+      // Show/hide empty state
+      if (filtered.length === 0) {
+        emptyState.classList.remove('hidden');
+        notificationsList.innerHTML = '';
+        return;
+      }
+
+      emptyState.classList.add('hidden');
+
+      // Render notifications
+      notificationsList.innerHTML = filtered.map(notif => {
+        const notifClass = notif.read ? 'notification-read' : 'notification-unread';
+        const iconClass = getNotificationClass(notif.type);
+        const metadata = getNotificationMetadata(notif.type, notif);
+        const icon = getNotificationIcon(notif.type);
+        
+        let busNumber = "Bus";
+        let destination = "Unknown";
+        let departureTime = "";
+
+        if (notif.trip && notif.trip.bus) {
+          busNumber = notif.trip.bus.registrationNumber;
+        }
+        if (notif.trip && notif.trip.route) {
+          destination = notif.trip.route.destination;
+        }
+        if (notif.trip) {
+          departureTime = new Date(notif.trip.departureTime).toLocaleTimeString('en-IN', { timeZone: 'Asia/Kolkata', hour: '2-digit', minute: '2-digit' });
+        } else {
+            // Check metadata if it's there
+            let meta = {};
+            try {
+                if(notif.metadata) meta = JSON.parse(notif.metadata);
+            } catch(e){}
+            busNumber = meta.busNumber || busNumber;
+            destination = meta.destination || destination;
+            departureTime = meta.departureTime || departureTime;
+        }
+
+        return `
+          <div class="notification-card ${notifClass} bg-surface-card rounded-xl border border-outline-variant/40 p-space-md hover:shadow-md transition-all cursor-pointer overflow-hidden" data-notification-id="${notif.id}">
+            <div class="flex items-start gap-space-md">
+              <!-- Icon -->
+              <div class="w-12 h-12 rounded-lg ${iconClass} flex items-center justify-center flex-shrink-0">
+                <span class="material-symbols-outlined">${icon}</span>
+              </div>
+
+              <!-- Content -->
+              <div class="flex-1 min-w-0">
+                <div class="flex items-start justify-between gap-2">
+                  <div class="flex-1">
+                    <h3 class="text-title-sm font-title-sm text-on-surface font-bold">${notif.title}</h3>
+                    <p class="text-body-sm text-on-surface-variant mt-1">${notif.message}</p>
+                  </div>
+                  ${!notif.read ? '<span class="w-2.5 h-2.5 rounded-full bg-transit-blue-glow flex-shrink-0 mt-1"></span>' : ''}
+                </div>
+
+                <!-- Metadata -->
+                <div class="mt-3 flex flex-wrap items-center gap-x-3 gap-y-2">
+                  <span class="inline-flex items-center gap-1 text-label-mono-xs font-label-mono-xs text-on-surface-variant">
+                    <span class="material-symbols-outlined text-xs">${notif.type === 'BOOKING_REMINDER' ? 'timer' : 'access_time'}</span>
+                    ${metadata}
+                  </span>
+                  <span class="inline-flex items-center gap-1 text-label-mono-xs font-label-mono-xs text-outline">
+                    <span class="material-symbols-outlined text-xs">directions_bus</span>
+                    ${busNumber}
+                  </span>
+                  <span class="inline-flex items-center gap-1 text-label-mono-xs font-label-mono-xs text-outline">
+                    <span class="material-symbols-outlined text-xs">location_on</span>
+                    ${destination}
+                  </span>
+                </div>
+
+                <!-- Action Buttons -->
+                <div class="mt-3 flex items-center gap-2">
+                  <button class="action-button px-3 py-1.5 rounded-lg bg-primary-container text-on-primary hover:bg-institute-navy-mid transition-colors text-label-mono-xs font-label-mono-xs font-semibold" data-action="view">
+                    View Details
+                  </button>
+                  ${!notif.read ? `
+                    <button class="action-button px-3 py-1.5 rounded-lg bg-surface-container-low border border-outline-variant/40 hover:bg-surface-container-high transition-colors text-label-mono-xs font-label-mono-xs font-semibold" data-action="markread">
+                      Mark as read
+                    </button>
+                  ` : ''}
+                </div>
+              </div>
+            </div>
+          </div>
+        `;
+      }).join('');
+
+      // Add event listeners
+      attachEventListeners();
+    }
+
+    function attachEventListeners() {
+      // Filter tabs
+      document.querySelectorAll('.filter-tab').forEach(tab => {
+        // Remove existing listener to avoid duplicates on re-render
+        const newTab = tab.cloneNode(true);
+        tab.parentNode.replaceChild(newTab, tab);
+        
+        newTab.addEventListener('click', () => {
+          document.querySelectorAll('.filter-tab').forEach(t => {
+            t.classList.remove('active', 'bg-primary-container', 'text-on-primary');
+            t.classList.add('bg-surface-card', 'border-outline-variant/40', 'text-on-surface-variant', 'hover:bg-surface-container-low');
+          });
+          newTab.classList.add('active', 'bg-primary-container', 'text-on-primary');
+          newTab.classList.remove('bg-surface-card', 'border-outline-variant/40', 'text-on-surface-variant', 'hover:bg-surface-container-low');
+          currentFilter = newTab.dataset.filter;
+          renderNotifications();
+        });
+      });
+
+      // Mark all as read
+      const markAllBtn = document.getElementById('markAllRead');
+      const newMarkAll = markAllBtn.cloneNode(true);
+      markAllBtn.parentNode.replaceChild(newMarkAll, markAllBtn);
+      
+      newMarkAll.addEventListener('click', async () => {
+        try {
+            await window.apiFetch('/api/notifications/read-all', { method: 'POST' });
+            notifications.forEach(n => n.read = true);
+            renderNotifications();
+            updateNotificationBadge();
+        } catch (e) { console.error(e); }
+      });
+
+      // Notification card actions
+      document.querySelectorAll('.action-button').forEach(btn => {
+        btn.addEventListener('click', async (e) => {
+          e.stopPropagation();
+          const action = btn.dataset.action;
+          const cardId = parseInt(btn.closest('.notification-card').dataset.notificationId, 10);
+          const notification = notifications.find(n => n.id === cardId);
+
+          if (action === 'view') {
+            showNotificationDetails(notification);
+          } else if (action === 'markread') {
+            try {
+                await window.apiFetch(`/api/notifications/${cardId}/read`, { method: 'PATCH' });
+                notification.read = true;
+                renderNotifications();
+                updateNotificationBadge();
+            } catch (e) { console.error(e); }
+          }
+        });
+      });
+
+      // Notification card click (mark as read)
+      document.querySelectorAll('.notification-card').forEach(card => {
+        card.addEventListener('click', async () => {
+          const cardId = parseInt(card.dataset.notificationId, 10);
+          const notification = notifications.find(n => n.id === cardId);
+          if (!notification.read) {
+            try {
+                await window.apiFetch(`/api/notifications/${cardId}/read`, { method: 'PATCH' });
+                notification.read = true;
+                renderNotifications();
+                updateNotificationBadge();
+            } catch (e) { console.error(e); }
+          }
+        });
+      });
+    }
+
+    function showNotificationDetails(notification) {
+      let meta = {};
+      try {
+          if(notification.metadata) meta = JSON.parse(notification.metadata);
+      } catch(e){}
+      
+      let busNumber = notification.trip?.bus?.registrationNumber || meta.busNumber || "Bus";
+      let destination = notification.trip?.route?.destination || meta.destination || "Unknown";
+      let departureTime = notification.trip ? new Date(notification.trip.departureTime).toLocaleTimeString('en-IN', { timeZone: 'Asia/Kolkata', hour: '2-digit', minute: '2-digit' }) : (meta.departureTime || "");
+        
+      alert(`
+${notification.title}
+
+${notification.message}
+
+Bus: ${busNumber}
+Destination: ${destination}
+Time: ${departureTime}
+      `);
+    }
+
+    function updateNotificationBadge() {
+      const unreadCount = getUnreadCount();
+      // This would update a badge in the navbar if it exists
+      console.log('Unread notifications:', unreadCount);
+    }
+
+    // Initialize
+    document.addEventListener('DOMContentLoaded', () => {
+      loadNotifications();
+    });
+  </script>
+<script src="state.js"></script>
+</body>
+</html>
+
+

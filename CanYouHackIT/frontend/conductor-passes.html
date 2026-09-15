@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>Passes & Bookings | IIITDMJ Transit - Conductor Terminal</title>
+  <link href="https://fonts.googleapis.com" rel="preconnect"/>
+  <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600;700&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "on-primary": "#ffffff",
+            "status-gold-light": "#FEF3C7",
+            "on-tertiary-fixed": "#002113",
+            "on-primary-container": "#7490c3",
+            "primary-container": "#002855",
+            "secondary-fixed": "#cce5ff",
+            "tertiary": "#00190e",
+            "ticket-hologram-violet": "#8B5CF6",
+            "surface-container": "#e0f0ff",
+            "status-gold": "#F59E0B",
+            "on-secondary-container": "#00476e",
+            "surface-container-low": "#ebf5ff",
+            "surface": "#f6faff",
+            "on-surface": "#0e1d28",
+            "institute-navy-mid": "#1E3E62",
+            "tertiary-fixed-dim": "#4edea3",
+            "outline": "#747780",
+            "surface-container-high": "#daeaf9",
+            "background": "#f6faff",
+            "on-tertiary-fixed-variant": "#005236",
+            "status-mint-subtle": "#ECFDF5",
+            "error-container": "#ffdad6",
+            "secondary-container": "#5bb8fe",
+            "surface-variant": "#d4e4f3",
+            "primary-fixed": "#d6e3ff",
+            "surface-dim": "#ccdceb",
+            "transit-blue-subtle": "#E0F2FE",
+            "tertiary-container": "#00301e",
+            "on-secondary": "#ffffff",
+            "inverse-on-surface": "#e5f2ff",
+            "on-error": "#ffffff",
+            "inverse-primary": "#aac7fd",
+            "on-error-container": "#93000a",
+            "on-surface-variant": "#43474f",
+            "primary-fixed-dim": "#aac7fd",
+            "surface-tint": "#415f8f",
+            "institute-navy-dark": "#0B192C",
+            "outline-variant": "#c4c6d0",
+            "surface-card": "#FFFFFF",
+            "surface-bright": "#f6faff",
+            "surface-canvas": "#F8FAFC",
+            "error": "#ba1a1a",
+            "primary": "#001430",
+            "surface-glass-border": "rgba(255, 255, 255, 0.45)",
+            "secondary-fixed-dim": "#93ccff",
+            "on-tertiary": "#ffffff",
+            "surface-container-highest": "#d4e4f3",
+            "tertiary-fixed": "#6ffbbe",
+            "on-tertiary-container": "#00a472",
+            "on-secondary-fixed-variant": "#004b73",
+            "surface-container-lowest": "#ffffff",
+            "inverse-surface": "#23323d",
+            "on-background": "#0e1d28",
+            "secondary": "#006398",
+            "on-secondary-fixed": "#001d31",
+            "on-primary-fixed": "#001b3d",
+            "transit-blue-glow": "#38BDF8",
+            "on-primary-fixed-variant": "#284775",
+            "status-mint-glow": "#34D399",
+            "ticket-hologram-cyan": "#06B6D4",
+            "status-success": "#10b981",
+            "status-warning": "#f59e0b",
+            "status-danger": "#ef4444"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          "spacing": {
+            "space-xl": "2.25rem",
+            "space-md": "1rem",
+            "space-lg": "1.5rem",
+            "margin-desktop": "3rem",
+            "gutter": "1rem",
+            "space-xs": "0.25rem",
+            "space-sm": "0.5rem",
+            "gutter-desktop": "1.5rem",
+            "margin-tablet": "2rem",
+            "margin": "1rem"
+          },
+          "fontFamily": {
+            "label-mono-xs": ["JetBrains Mono"],
+            "headline-lg-mobile": ["Space Grotesk"],
+            "display-hero-mobile": ["Space Grotesk"],
+            "title-sm": ["Inter"],
+            "ticker-lg": ["JetBrains Mono"],
+            "label-mono": ["JetBrains Mono"],
+            "headline-lg": ["Space Grotesk"],
+            "headline-md": ["Space Grotesk"],
+            "ticker-md": ["JetBrains Mono"],
+            "body-md": ["Inter"],
+            "display-hero": ["Space Grotesk"],
+            "body-lg": ["Inter"],
+            "body-sm": ["Inter"]
+          },
+          "animation": {
+            "pulse-subtle": "pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite",
+            "slide-in": "slideIn 0.3s ease-out"
+          },
+          "keyframes": {
+            "slideIn": {
+              "from": { "transform": "translateX(-100%)", "opacity": "0" },
+              "to": { "transform": "translateX(0)", "opacity": "1" }
+            }
+          }
+        },
+      },
+    }
+  </script>
+  <style>
+    .material-symbols-outlined { 
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; 
+      display: inline-block; 
+      vertical-align: middle; 
+      line-height: 1;
+    }
+    .bus-card-active {
+      border-color: #38BDF8;
+      background-color: rgba(56, 189, 248, 0.05);
+      box-shadow: 0 0 0 2px rgba(56, 189, 248, 0.2);
+    }
+    .passenger-row-boarded {
+      background-color: rgba(52, 211, 153, 0.08);
+      border-left: 3px solid #34D399;
+    }
+    .passenger-row-pending {
+      background-color: rgba(245, 158, 11, 0.08);
+      border-left: 3px solid #F59E0B;
+    }
+    .status-badge {
+      display: inline-block;
+      padding: 0.25rem 0.75rem;
+      border-radius: 9999px;
+      font-size: 0.75rem;
+      font-weight: 600;
+    }
+    .status-badge.boarded {
+      background-color: #D1FAE5;
+      color: #065F46;
+    }
+    .status-badge.pending {
+      background-color: #FEF3C7;
+      color: #92400E;
+    }
+    .status-badge.cancelled {
+      background-color: #FEE2E2;
+      color: #991B1B;
+    }
+    .scroll-smooth {
+      scroll-behavior: smooth;
+    }
+    .transition-all-fast {
+      transition: all 0.2s ease-out;
+    }
+  </style>
+</head>
+<body class="bg-surface-canvas text-on-surface font-body-md text-body-md antialiased selection:bg-secondary selection:text-on-secondary-container">
+  <!-- HEADER -->
+  <header class="bg-primary-container dark:bg-institute-navy-dark text-on-primary dark:text-primary-fixed sticky top-0 z-50 border-b border-surface-glass-border">
+    <div class="flex justify-between items-center w-full px-space-md md:px-margin-desktop max-w-7xl mx-auto h-16">
+      <div class="flex items-center gap-space-sm">
+        <div class="w-9 h-9 rounded-lg bg-institute-navy-mid flex items-center justify-center text-transit-blue-glow shadow-inner border border-transit-blue-glow/30">
+          <span class="material-symbols-outlined">directions_bus</span>
+        </div>
+        <div class="flex flex-col">
+          <span class="text-headline-md font-headline-md font-bold tracking-tight text-on-primary dark:text-primary-fixed">IIITDMJ Transit</span>
+          <div class="flex items-center gap-1.5">
+            <span class="w-2 h-2 rounded-full bg-status-mint-glow animate-ping"></span>
+            <span class="text-label-mono-xs font-label-mono-xs text-secondary-fixed">Conductor Terminal • Online</span>
+          </div>
+        </div>
+      </div>
+      <nav class="hidden md:flex items-center gap-space-lg">
+        <a class="text-on-primary-container dark:text-outline-variant font-medium hover:text-transit-blue-glow" href="conductor-scan.html">Scanner</a>
+        <a class="text-on-primary-container dark:text-outline-variant font-medium hover:text-transit-blue-glow active:text-transit-blue-glow" href="conductor-passes.html">Passes</a>
+
+      </nav>
+      <div class="flex items-center gap-space-sm md:gap-space-md">
+        <div class="hidden lg:flex flex-col text-right pl-2 border-l border-primary-container/60">
+          <span class="text-title-sm font-title-sm text-on-primary text-xs leading-none">Mr. Tilak Singh</span>
+          <span class="text-label-mono-xs font-label-mono-xs text-primary-fixed/80">Badge: #EMP-0412</span>
+        </div>
+        <div class="flex items-center gap-1 text-on-primary-container">
+          <button class="p-1.5 rounded-lg hover:text-on-primary transition-colors" title="Notifications" onclick="window.location.href='notifications.html'"><span class="material-symbols-outlined">notifications</span></button>
+          <button class="p-1.5 rounded-lg hover:text-on-primary transition-colors" title="Profile" onclick="window.location.href='account.html?role=conductor'"><span class="material-symbols-outlined">account_circle</span></button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="max-w-7xl mx-auto px-space-md md:px-margin-desktop py-space-lg space-y-space-lg">
+    <!-- Page Title -->
+    <section class="bg-surface-card rounded-xl border border-outline-variant/40 p-space-md md:p-space-lg shadow-lg">
+      <div class="flex items-center justify-between">
+        <div>
+          <h1 class="text-headline-md font-headline-md text-on-surface font-semibold">Bus Passes & Bookings</h1>
+          <p class="text-body-sm text-on-surface-variant mt-1">View scheduled buses and manage passenger bookings for today's routes.</p>
+        </div>
+        <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-status-mint-subtle border border-status-mint-glow/50 text-on-tertiary-container text-label-mono-xs font-label-mono-xs">
+          <span class="w-2 h-2 rounded-full bg-status-mint-glow animate-pulse"></span>
+          TODAY'S SCHEDULE
+        </div>
+      </div>
+    </section>
+
+    <!-- Main Content Grid -->
+    <div class="grid grid-cols-1 lg:grid-cols-4 gap-6">
+      <!-- Left: Bus List (Scrollable) -->
+      <div class="lg:col-span-1 order-2 lg:order-1">
+        <div class="bg-surface-card rounded-xl border border-outline-variant/40 shadow-lg overflow-hidden flex flex-col h-full">
+          <div class="bg-primary-container text-on-primary p-space-md border-b border-outline-variant/40">
+            <h2 class="text-title-sm font-title-sm font-bold flex items-center gap-2">
+              <span class="material-symbols-outlined">directions_bus</span>
+              Available Buses
+            </h2>
+            <p class="text-label-mono-xs text-on-primary-container mt-1">Click to view passengers</p>
+          </div>
+          
+          <!-- Bus Filter Buttons -->
+          <div class="p-space-md border-b border-outline-variant/40 space-y-2">
+            <button class="w-full px-3 py-2 rounded-lg text-label-mono-xs font-label-mono-xs filter-btn active bg-transit-blue-subtle text-secondary border border-secondary-container transition-all-fast" data-filter="all">
+              ALL BUSES
+            </button>
+            <button class="w-full px-3 py-2 rounded-lg text-label-mono-xs font-label-mono-xs filter-btn bg-surface-canvas text-on-surface-variant hover:bg-surface-container-low transition-all-fast" data-filter="active">
+              ACTIVE ONLY
+            </button>
+          </div>
+
+          <!-- Bus List -->
+          <div id="busList" class="flex-1 overflow-y-auto">
+            <div class="space-y-2 p-space-md">
+              <!-- Bus cards will be inserted here -->
+              <div class="animate-pulse">
+                <div class="h-20 bg-surface-container-low rounded-lg"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Info Footer -->
+          <div class="p-space-md bg-surface-canvas border-t border-outline-variant/40">
+            <div class="flex items-start gap-2 text-label-mono-xs text-on-surface-variant">
+              <span class="material-symbols-outlined text-sm flex-shrink-0">info</span>
+              <span>Total buses today: <strong id="totalBuses">0</strong></span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right: Passenger Details (Expandable) -->
+      <div class="lg:col-span-3 order-1 lg:order-2">
+        <div id="passengerPanel" class="bg-surface-card rounded-xl border border-outline-variant/40 shadow-lg overflow-hidden flex flex-col h-full">
+          <!-- Empty State -->
+          <div id="emptyState" class="flex-1 flex flex-col items-center justify-center p-space-lg text-center">
+            <span class="material-symbols-outlined text-6xl text-surface-variant mb-4">directions_bus</span>
+            <h3 class="text-title-sm font-title-sm font-bold text-on-surface-variant">Select a Bus</h3>
+            <p class="text-body-sm text-on-surface-variant mt-2">Click a bus from the list to view passenger bookings and manage tickets.</p>
+          </div>
+
+          <!-- Bus Details Header (Hidden initially) -->
+          <div id="busDetailsHeader" class="hidden bg-gradient-to-r from-primary-container to-institute-navy-mid text-on-primary p-space-lg border-b border-outline-variant/40">
+            <div class="flex items-start justify-between">
+              <div class="flex-1">
+                <div class="flex items-center gap-3 mb-3">
+                  <span class="material-symbols-outlined text-3xl">directions_bus</span>
+                  <div>
+                    <h2 id="selectedBusNumber" class="text-headline-md font-headline-md font-bold">Bus #1</h2>
+                    <p id="selectedBusLicense" class="text-label-mono-xs text-on-primary-container">MP20 ZL1297</p>
+                  </div>
+                </div>
+                <div class="grid grid-cols-3 gap-4 mt-4">
+                  <div>
+                    <span class="text-label-mono-xs text-on-primary-container block">Route</span>
+                    <p id="selectedBusRoute" class="font-title-sm font-bold">—</p>
+                  </div>
+                  <div>
+                    <span class="text-label-mono-xs text-on-primary-container block">Departure</span>
+                    <p id="selectedBusDeparture" class="font-title-sm font-bold">—</p>
+                  </div>
+                  <div>
+                    <span class="text-label-mono-xs text-on-primary-container block">Status</span>
+                    <p id="selectedBusStatus" class="font-title-sm font-bold">—</p>
+                  </div>
+                </div>
+              </div>
+              <button id="closeDetails" class="p-2 rounded-lg hover:bg-institute-navy-mid transition-colors">
+                <span class="material-symbols-outlined">close</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Passenger List -->
+          <div id="passengerContent" class="hidden flex-1 flex flex-col overflow-hidden">
+            <!-- Stats Bar -->
+            <div class="p-space-md bg-surface-canvas border-b border-outline-variant/40">
+              <div class="grid grid-cols-4 gap-4">
+                <div class="text-center">
+                  <span class="text-label-mono-xs text-on-surface-variant block">Total Booked</span>
+                  <p id="totalBooked" class="text-headline-md font-headline-md font-bold text-primary">0</p>
+                </div>
+                <div class="text-center border-l border-outline-variant/40">
+                  <span class="text-label-mono-xs text-on-surface-variant block">Boarded</span>
+                  <p id="totalBoardedCount" class="text-headline-md font-headline-md font-bold text-status-success">0</p>
+                </div>
+                <div class="text-center border-l border-outline-variant/40">
+                  <span class="text-label-mono-xs text-on-surface-variant block">Pending</span>
+                  <p id="totalPendingCount" class="text-headline-md font-headline-md font-bold text-status-warning">0</p>
+                </div>
+                <div class="text-center border-l border-outline-variant/40">
+                  <span class="text-label-mono-xs text-on-surface-variant block">Capacity</span>
+                  <p id="capacityCount" class="text-headline-md font-headline-md font-bold text-secondary">0</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Search and Filter -->
+            <div class="p-space-md border-b border-outline-variant/40 space-y-3">
+              <input type="text" id="passengerSearch" class="w-full h-11 px-3 rounded-lg border border-outline-variant bg-surface-canvas" placeholder="Search by name or roll number..." />
+              <div class="flex gap-2">
+                <button class="px-3 py-2 rounded-lg text-label-mono-xs font-label-mono-xs passenger-filter-btn active bg-transit-blue-subtle text-secondary border border-secondary-container transition-all-fast" data-filter="all">
+                  All
+                </button>
+                <button class="px-3 py-2 rounded-lg text-label-mono-xs font-label-mono-xs passenger-filter-btn bg-surface-canvas text-on-surface-variant hover:bg-surface-container-low transition-all-fast" data-filter="boarded">
+                  Boarded
+                </button>
+                <button class="px-3 py-2 rounded-lg text-label-mono-xs font-label-mono-xs passenger-filter-btn bg-surface-canvas text-on-surface-variant hover:bg-surface-container-low transition-all-fast" data-filter="pending">
+                  Pending
+                </button>
+              </div>
+            </div>
+
+            <!-- Passengers Table -->
+            <div class="flex-1 overflow-y-auto">
+              <table class="w-full text-body-sm">
+                <thead>
+                  <tr class="bg-surface-container-low border-b border-outline-variant/40 sticky top-0">
+                    <th class="px-4 py-3 text-left text-label-mono-xs font-label-mono-xs text-on-surface-variant uppercase">Name</th>
+                    <th class="px-4 py-3 text-left text-label-mono-xs font-label-mono-xs text-on-surface-variant uppercase">Roll</th>
+                    <th class="px-4 py-3 text-center text-label-mono-xs font-label-mono-xs text-on-surface-variant uppercase">Status</th>
+                    <th class="px-4 py-3 text-center text-label-mono-xs font-label-mono-xs text-on-surface-variant uppercase">Action</th>
+                  </tr>
+                </thead>
+                <tbody id="passengerTable">
+                  <!-- Passenger rows will be inserted here -->
+                </tbody>
+              </table>
+              <div id="noPassengers" class="text-center py-8 text-on-surface-variant">
+                <p class="text-body-sm">No passengers match the current filters.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="bg-primary dark:bg-institute-navy-dark text-on-primary mt-space-xl border-t border-outline-variant/40">
+    <div class="w-full py-space-lg px-space-md md:px-margin-desktop max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-space-md">
+      <div class="flex flex-col items-center md:items-start">
+        <span class="text-title-sm font-title-sm font-bold text-on-primary">IIITDMJ Transit Conductor Console</span>
+        <p class="text-body-sm text-outline-variant mt-1">© 2025 PDPM IIITDM Jabalpur. Fleet Operations.</p>
+      </div>
+      <nav class="flex flex-wrap justify-center gap-x-6 gap-y-2 text-body-sm font-body-sm">
+        <a class="text-outline-variant hover:text-transit-blue-glow" href="conductor-scan.html">Scanner</a>
+        <a class="text-outline-variant hover:text-transit-blue-glow" href="conductor-passes.html">Passes</a>
+        <a class="text-outline-variant hover:text-transit-blue-glow" href="checkout.html">Payments</a>
+      </nav>
+    </div>
+  </footer>
+
+  <script>
+    let busSchedule = [];
+    let selectedBusId = null;
+    let allPassengers = [];
+    let filteredPassengers = [];
+
+    // DOM Elements
+    const busList = document.getElementById('busList');
+    const passengerPanel = document.getElementById('passengerPanel');
+    const emptyState = document.getElementById('emptyState');
+    const busDetailsHeader = document.getElementById('busDetailsHeader');
+    const passengerContent = document.getElementById('passengerContent');
+    const closeDetailsBtn = document.getElementById('closeDetails');
+    const passengerTable = document.getElementById('passengerTable');
+    const noPassengers = document.getElementById('noPassengers');
+    const passengerSearch = document.getElementById('passengerSearch');
+    const totalBusesSpan = document.getElementById('totalBuses');
+
+    // Initialize
+    async function init() {
+      await fetchTrips();
+      // Setup live refresh
+      if (window.socket) {
+        window.socket.on('trip.passengers.updated', async (data) => {
+          await fetchTrips();
+          if (selectedBusId) {
+             selectBus(selectedBusId, true); // preserve selection silently
+          }
+        });
+      }
+    }
+
+    async function fetchTrips() {
+      try {
+        const response = await window.apiFetch('/api/conductor/trips');
+        if (response.ok) {
+           const rawTrips = await response.json();
+           // map rawTrips to the structure expected by the UI
+           busSchedule = rawTrips.map(t => {
+               const departsAt = new Date(`${t.tripDate}T${t.departureTime}:00+05:30`);
+               const isToday = departsAt.toDateString() === new Date().toDateString();
+               const isPast = departsAt < new Date();
+               
+               let status = 'scheduled';
+               if (t.status === 'ACTIVE') status = 'active';
+               else if (t.status === 'COMPLETED') status = 'completed';
+               
+               return {
+                   id: t.id,
+                   busNumber: t.bus.registrationNumber,
+                   licensePlate: `Cap: ${t.bus.capacity}`,
+                   route: t.route.name,
+                   departure: departsAt.toLocaleTimeString('en-US', { timeZone: 'Asia/Kolkata', hour: '2-digit', minute: '2-digit' }),
+                   capacity: t.bus.capacity,
+                   status: status,
+                   passengers: t.tickets.map(tkt => ({
+                       id: tkt.id,
+                       ticketId: tkt.ticketNumber,
+                       name: tkt.user.name,
+                       roll: tkt.user.rollNumber,
+                       status: tkt.status === 'BOARDED' ? 'boarded' : 'pending',
+                       boardTime: tkt.boardedAt ? new Date(tkt.boardedAt).toLocaleTimeString('en-US', { timeZone: 'Asia/Kolkata', hour: '2-digit', minute: '2-digit' }) : null
+                   }))
+               }
+           });
+           totalBusesSpan.textContent = busSchedule.length;
+           renderBusList();
+           if (!selectedBusId) {
+             const busWithPassengers = busSchedule.find(bus => bus.passengers.length > 0);
+             if (busWithPassengers) selectBus(busWithPassengers.id, true);
+           }
+        }
+      } catch (err) {
+        console.error('Failed to fetch trips', err);
+      }
+    }
+
+    // Render Bus List
+    function renderBusList() {
+      const filter = document.querySelector('.filter-btn.active')?.dataset.filter || 'all';
+      const filtered = filter === 'all' ? busSchedule : busSchedule.filter(b => b.status === 'active');
+
+      busList.innerHTML = filtered.map(bus => `
+        <div class="bus-card p-3 rounded-lg border border-outline-variant cursor-pointer transition-all-fast hover:border-transit-blue-glow ${selectedBusId === bus.id ? 'bus-card-active' : 'bg-surface-canvas hover:bg-surface-container-low'}" data-bus-id="${bus.id}">
+          <div class="flex items-start justify-between mb-2">
+            <div>
+              <p class="font-title-sm font-bold text-primary">${bus.busNumber}</p>
+              <p class="text-label-mono-xs text-on-surface-variant">${bus.licensePlate}</p>
+            </div>
+            <span class="status-badge ${bus.status === 'active' ? 'boarded' : 'pending'}">
+              ${bus.status.toUpperCase()}
+            </span>
+          </div>
+          <div class="space-y-1 text-label-mono-xs text-on-surface-variant mb-2">
+            <p><strong>Route:</strong> ${bus.route}</p>
+            <p><strong>Depart:</strong> ${bus.departure}</p>
+          </div>
+          <div class="pt-2 border-t border-outline-variant/40">
+            <p class="text-body-sm font-bold text-secondary">${bus.passengers.length}/${bus.capacity} Booked</p>
+          </div>
+        </div>
+      `).join('');
+
+      // Add click listeners
+      document.querySelectorAll('.bus-card').forEach(card => {
+        card.addEventListener('click', () => selectBus(card.dataset.busId));
+      });
+    }
+
+    // Select Bus
+    function selectBus(busId, silent = false) {
+      selectedBusId = busId;
+      const selectedBus = busSchedule.find(b => b.id === busId);
+      if (!selectedBus) return;
+
+      // Update header
+      document.getElementById('selectedBusNumber').textContent = selectedBus.busNumber;
+      document.getElementById('selectedBusLicense').textContent = selectedBus.licensePlate;
+      document.getElementById('selectedBusRoute').textContent = selectedBus.route;
+      document.getElementById('selectedBusDeparture').textContent = selectedBus.departure;
+      document.getElementById('selectedBusStatus').textContent = selectedBus.status.toUpperCase();
+      document.getElementById('capacityCount').textContent = `${selectedBus.capacity}`;
+
+      // Load passengers
+      allPassengers = selectedBus.passengers;
+      filteredPassengers = [...allPassengers];
+      
+      if (!silent) {
+         passengerSearch.value = '';
+         document.querySelectorAll('.passenger-filter-btn').forEach(btn => btn.classList.remove('active', 'bg-transit-blue-subtle', 'text-secondary', 'border-secondary-container'));
+         document.querySelector('[data-filter="all"].passenger-filter-btn').classList.add('active', 'bg-transit-blue-subtle', 'text-secondary', 'border-secondary-container');
+      } else {
+         applyPassengerFilter(); // re-apply filter logic quietly
+      }
+      
+      updatePassengerStats();
+      renderPassengers();
+
+      // Update UI
+      emptyState.classList.add('hidden');
+      busDetailsHeader.classList.remove('hidden');
+      passengerContent.classList.remove('hidden');
+      
+      // Update bus list UI
+      document.querySelectorAll('.bus-card').forEach(card => {
+        card.classList.remove('bus-card-active');
+        if (card.dataset.busId === busId) {
+          card.classList.add('bus-card-active');
+        }
+      });
+    }
+
+    // Update Passenger Stats
+    function updatePassengerStats() {
+      const boarded = allPassengers.filter(p => p.status === 'boarded').length;
+      const pending = allPassengers.filter(p => p.status === 'pending').length;
+
+      document.getElementById('totalBooked').textContent = allPassengers.length;
+      document.getElementById('totalBoardedCount').textContent = boarded;
+      document.getElementById('totalPendingCount').textContent = pending;
+    }
+
+    // Render Passengers
+    function renderPassengers() {
+      if (filteredPassengers.length === 0) {
+        passengerTable.innerHTML = '';
+        noPassengers.classList.remove('hidden');
+        return;
+      }
+
+      noPassengers.classList.add('hidden');
+      passengerTable.innerHTML = filteredPassengers.map(passenger => `
+        <tr class="border-b border-outline-variant/40 hover:bg-surface-container-low transition-colors ${passenger.status === 'boarded' ? 'passenger-row-boarded' : 'passenger-row-pending'}">
+          <td class="px-4 py-3">
+            <div>
+              <p class="font-title-sm font-bold text-primary">${passenger.name}</p>
+              <p class="text-label-mono-xs text-on-surface-variant">TKT: ${passenger.ticketId}</p>
+            </div>
+          </td>
+          <td class="px-4 py-3">
+            <p class="font-label-mono text-label-mono font-bold text-secondary">${passenger.roll}</p>
+          </td>
+          <td class="px-4 py-3 text-center">
+            <span class="status-badge ${passenger.status}">
+              ${passenger.status.toUpperCase()}
+            </span>
+            ${passenger.boardTime ? `<p class="text-label-mono-xs text-on-surface-variant mt-1">${passenger.boardTime}</p>` : ''}
+          </td>
+          <td class="px-4 py-3 text-center">
+            <div class="flex justify-center gap-2">
+              <button class="p-2 rounded-lg bg-error text-on-error hover:opacity-80 transition-colors flag-ticket" data-passenger-id="${passenger.id}" title="Flag issue">
+                <span class="material-symbols-outlined text-sm">flag</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      `).join('');
+
+      // Add event listeners
+      document.querySelectorAll('.flag-ticket').forEach(btn => {
+        btn.addEventListener('click', () => flagTicket(parseInt(btn.dataset.passengerId)));
+      });
+    }
+
+    // Flag Ticket for Issue
+    function flagTicket(passengerId) {
+      alert('Ticket flagged. Escalating to security team...');
+    }
+
+    // Search Passengers
+    passengerSearch.addEventListener('input', (e) => {
+      const query = e.target.value.toLowerCase();
+      filteredPassengers = allPassengers.filter(p =>
+        p.name.toLowerCase().includes(query) || p.roll.toLowerCase().includes(query) || p.ticketId.toLowerCase().includes(query)
+      );
+      applyPassengerFilter(true);
+    });
+
+    // Filter Passengers
+    document.querySelectorAll('.passenger-filter-btn').forEach(btn => {
+      // replace clones to prevent duplicate bindings on re-render if I ever re-bind
+      const newBtn = btn.cloneNode(true);
+      btn.parentNode.replaceChild(newBtn, btn);
+      
+      newBtn.addEventListener('click', () => {
+        document.querySelectorAll('.passenger-filter-btn').forEach(b => {
+          b.classList.remove('active', 'bg-transit-blue-subtle', 'text-secondary', 'border-secondary-container');
+          b.classList.add('bg-surface-canvas', 'text-on-surface-variant', 'hover:bg-surface-container-low');
+        });
+        newBtn.classList.add('active', 'bg-transit-blue-subtle', 'text-secondary', 'border-secondary-container');
+        newBtn.classList.remove('bg-surface-canvas', 'text-on-surface-variant', 'hover:bg-surface-container-low');
+        applyPassengerFilter();
+      });
+    });
+
+    function applyPassengerFilter(skipSearch = false) {
+      const filter = document.querySelector('.passenger-filter-btn.active')?.dataset.filter || 'all';
+      
+      let base = allPassengers;
+      if (skipSearch) {
+          // If we are filtering from the search box, the base is the search results.
+      } else {
+          // If we are clicking a button, we need to respect the search box too
+          const query = passengerSearch.value.toLowerCase();
+          base = allPassengers.filter(p => p.name.toLowerCase().includes(query) || p.roll.toLowerCase().includes(query) || p.ticketId.toLowerCase().includes(query));
+      }
+
+      if (filter === 'all') {
+        filteredPassengers = [...base];
+      } else {
+        filteredPassengers = base.filter(p => p.status === filter);
+      }
+      renderPassengers();
+    }
+
+    // Bus List Filter
+    document.querySelectorAll('.filter-btn').forEach(btn => {
+      const newBtn = btn.cloneNode(true);
+      btn.parentNode.replaceChild(newBtn, btn);
+      
+      newBtn.addEventListener('click', () => {
+        document.querySelectorAll('.filter-btn').forEach(b => {
+          b.classList.remove('active', 'bg-transit-blue-subtle', 'text-secondary', 'border-secondary-container');
+          b.classList.add('bg-surface-canvas', 'text-on-surface-variant', 'hover:bg-surface-container-low');
+        });
+        newBtn.classList.add('active', 'bg-transit-blue-subtle', 'text-secondary', 'border-secondary-container');
+        newBtn.classList.remove('bg-surface-canvas', 'text-on-surface-variant', 'hover:bg-surface-container-low');
+        renderBusList();
+      });
+    });
+
+    // Close Details
+    closeDetailsBtn.addEventListener('click', () => {
+      selectedBusId = null;
+      emptyState.classList.remove('hidden');
+      busDetailsHeader.classList.add('hidden');
+      passengerContent.classList.add('hidden');
+      document.querySelectorAll('.bus-card').forEach(card => card.classList.remove('bus-card-active'));
+    });
+
+    // Initialize on page load
+    window.addEventListener('DOMContentLoaded', init);
+  </script>
+<script src="state.js"></script>
+</body>
+</html>
+
+

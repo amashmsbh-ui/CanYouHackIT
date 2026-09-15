@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>IIITDMJ Transit - Live Verified Boarding Pass</title>
+<!-- Material Symbols & Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500;600;700&amp;family=Space+Grotesk:wght@600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "on-primary": "#ffffff",
+            "status-gold-light": "#FEF3C7",
+            "on-tertiary-fixed": "#002113",
+            "on-primary-container": "#7490c3",
+            "primary-container": "#002855",
+            "secondary-fixed": "#cce5ff",
+            "tertiary": "#00190e",
+            "ticket-hologram-violet": "#8B5CF6",
+            "surface-container": "#e0f0ff",
+            "status-gold": "#F59E0B",
+            "on-secondary-container": "#00476e",
+            "surface-container-low": "#ebf5ff",
+            "surface": "#f6faff",
+            "on-surface": "#0e1d28",
+            "institute-navy-mid": "#1E3E62",
+            "tertiary-fixed-dim": "#4edea3",
+            "outline": "#747780",
+            "surface-container-high": "#daeaf9",
+            "background": "#f6faff",
+            "on-tertiary-fixed-variant": "#005236",
+            "status-mint-subtle": "#ECFDF5",
+            "error-container": "#ffdad6",
+            "secondary-container": "#5bb8fe",
+            "surface-variant": "#d4e4f3",
+            "primary-fixed": "#d6e3ff",
+            "surface-dim": "#ccdceb",
+            "transit-blue-subtle": "#E0F2FE",
+            "tertiary-container": "#00301e",
+            "on-secondary": "#ffffff",
+            "inverse-on-surface": "#e5f2ff",
+            "on-error": "#ffffff",
+            "inverse-primary": "#aac7fd",
+            "on-error-container": "#93000a",
+            "on-surface-variant": "#43474f",
+            "primary-fixed-dim": "#aac7fd",
+            "surface-tint": "#415f8f",
+            "institute-navy-dark": "#0B192C",
+            "outline-variant": "#c4c6d0",
+            "surface-card": "#FFFFFF",
+            "surface-bright": "#f6faff",
+            "surface-canvas": "#F8FAFC",
+            "error": "#ba1a1a",
+            "primary": "#001430",
+            "surface-glass-border": "rgba(255, 255, 255, 0.45)",
+            "secondary-fixed-dim": "#93ccff",
+            "on-tertiary": "#ffffff",
+            "surface-container-highest": "#d4e4f3",
+            "tertiary-fixed": "#6ffbbe",
+            "on-tertiary-container": "#00a472",
+            "on-secondary-fixed-variant": "#004b73",
+            "surface-container-lowest": "#ffffff",
+            "inverse-surface": "#23323d",
+            "on-background": "#0e1d28",
+            "secondary": "#006398",
+            "on-secondary-fixed": "#001d31",
+            "on-primary-fixed": "#001b3d",
+            "transit-blue-glow": "#38BDF8",
+            "on-primary-fixed-variant": "#284775",
+            "status-mint-glow": "#34D399",
+            "ticket-hologram-cyan": "#06B6D4"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          "spacing": {
+            "space-xl": "2.25rem",
+            "space-md": "1rem",
+            "space-lg": "1.5rem",
+            "margin-desktop": "3rem",
+            "gutter": "1rem",
+            "space-xs": "0.25rem",
+            "space-sm": "0.5rem",
+            "gutter-desktop": "1.5rem",
+            "margin-tablet": "2rem",
+            "margin": "1rem"
+          },
+          "fontFamily": {
+            "label-mono-xs": ["JetBrains Mono"],
+            "headline-lg-mobile": ["Space Grotesk"],
+            "display-hero-mobile": ["Space Grotesk"],
+            "title-sm": ["Inter"],
+            "ticker-lg": ["JetBrains Mono"],
+            "label-mono": ["JetBrains Mono"],
+            "headline-lg": ["Space Grotesk"],
+            "headline-md": ["Space Grotesk"],
+            "ticker-md": ["JetBrains Mono"],
+            "body-md": ["Inter"],
+            "display-hero": ["Space Grotesk"],
+            "body-lg": ["Inter"],
+            "body-sm": ["Inter"]
+          },
+          "fontSize": {
+            "label-mono-xs": ["10px", { "lineHeight": "12px", "letterSpacing": "0.08em", "fontWeight": "600" }],
+            "headline-lg-mobile": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+            "display-hero-mobile": ["30px", { "lineHeight": "36px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+            "title-sm": ["16px", { "lineHeight": "24px", "letterSpacing": "0em", "fontWeight": "600" }],
+            "ticker-lg": ["28px", { "lineHeight": "32px", "letterSpacing": "-0.04em", "fontWeight": "700" }],
+            "label-mono": ["12px", { "lineHeight": "16px", "letterSpacing": "0.04em", "fontWeight": "500" }],
+            "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+            "headline-md": ["20px", { "lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+            "ticker-md": ["18px", { "lineHeight": "24px", "letterSpacing": "-0.02em", "fontWeight": "600" }],
+            "body-md": ["14px", { "lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "400" }],
+            "display-hero": ["40px", { "lineHeight": "48px", "letterSpacing": "-0.03em", "fontWeight": "700" }],
+            "body-lg": ["16px", { "lineHeight": "24px", "letterSpacing": "0em", "fontWeight": "400" }],
+            "body-sm": ["12px", { "lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "400" }]
+          }
+        }
+      }
+    }
+  </script>
+<style>
+    .material-symbols-outlined {
+      font-family: 'Material Symbols Outlined';
+      font-weight: normal;
+      font-style: normal;
+      font-size: 24px;
+      line-height: 1;
+      letter-spacing: normal;
+      text-transform: none;
+      display: inline-block;
+      white-space: nowrap;
+      word-wrap: normal;
+      direction: ltr;
+      -webkit-font-feature-settings: 'liga';
+      -webkit-font-smoothing: antialiased;
+    }
+
+    @keyframes live-ticker {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+    .animate-marquee {
+      display: flex;
+      width: 200%;
+      animation: live-ticker 12s linear infinite;
+    }
+
+    @keyframes pulse-halo {
+      0%, 100% { opacity: 0.8; box-shadow: 0 0 20px rgba(52, 211, 153, 0.45); }
+      50% { opacity: 1; box-shadow: 0 0 35px rgba(6, 182, 212, 0.65); }
+    }
+    .animate-telemetry-glow {
+      animation: pulse-halo 3s ease-in-out infinite;
+    }
+
+    @keyframes color-sweep {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+    .animate-hologram-strip {
+      background: linear-gradient(90deg, #10B981, #06B6D4, #38BDF8, #10B981);
+      background-size: 300% 300%;
+      animation: color-sweep 4s ease infinite;
+    }
+
+    .ticket-perforation-left {
+      position: absolute;
+      left: -16px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 32px;
+      height: 32px;
+      background-color: #F8FAFC;
+      border-radius: 9999px;
+      box-shadow: inset -3px 0 4px rgba(0,0,0,0.06);
+    }
+    .ticket-perforation-right {
+      position: absolute;
+      right: -16px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 32px;
+      height: 32px;
+      background-color: #F8FAFC;
+      border-radius: 9999px;
+      box-shadow: inset 3px 0 4px rgba(0,0,0,0.06);
+    }
+  </style>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+</head>
+<body class="bg-surface-canvas text-on-surface font-body-md text-body-md antialiased min-h-screen flex flex-col selection:bg-secondary selection:text-on-primary">
+<!-- TOP APP BAR (Shared Component Source of Truth) -->
+<header class="bg-primary-container dark:bg-institute-navy-dark text-on-primary dark:text-primary-fixed docked full-width top-0 z-50 border-b border-surface-glass-border dark:border-outline-variant shadow-md dark:shadow-none">
+<div class="flex justify-between items-center w-full px-space-md md:px-margin-desktop max-w-7xl mx-auto h-16">
+<!-- Brand Logo Anchor -->
+<div class="flex items-center gap-space-sm">
+<span class="material-symbols-outlined text-secondary-container" data-icon="directions_bus">directions_bus</span>
+<span class="text-headline-md font-headline-md font-bold tracking-tight text-on-primary dark:text-primary-fixed">IIITDMJ Transit</span>
+</div>
+<!-- Desktop Nav Cluster -->
+<nav class="hidden md:flex items-center space-x-6">
+<a class="text-on-primary-container dark:text-outline-variant font-medium hover:text-transit-blue-glow dark:hover:text-secondary-fixed transition-colors duration-150" href="4th.html">Live Dashboard</a>
+<a class="text-on-primary-container dark:text-outline-variant font-medium hover:text-transit-blue-glow dark:hover:text-secondary-fixed transition-colors duration-150" href="4th.html">Timetable</a>
+<a class="text-on-primary-container dark:text-outline-variant font-medium hover:text-transit-blue-glow dark:hover:text-secondary-fixed transition-colors duration-150" href="3rd.html">Quick Booking</a>
+<a class="text-transit-blue-glow dark:text-secondary-fixed border-b-2 border-transit-blue-glow dark:border-secondary-fixed pb-1 font-semibold" href="2nd.html">My Passes</a>
+</nav>
+<!-- Trailing Action Badges -->
+<div class="flex items-center gap-space-sm">
+
+<button aria-label="Notifications" class="p-2 text-on-primary-container hover:text-transit-blue-glow active:scale-95 transition-transform duration-100" type="button">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+<button aria-label="Student Profile" class="p-1 text-on-primary-container hover:text-transit-blue-glow active:scale-95 transition-transform duration-100" type="button">
+<span class="material-symbols-outlined" data-icon="account_circle">account_circle</span>
+</button>
+</div>
+</div>
+</header>
+<!-- OFFLINE CACHE FALLBACK NOTIFICATION BANNER -->
+<aside aria-label="Offline Mode Notice" class="w-full bg-status-gold text-institute-navy-dark px-space-md py-2 border-b border-status-gold-light/40 shadow-sm">
+<div class="max-w-7xl mx-auto flex items-center justify-between gap-2 text-xs md:text-sm">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined font-bold text-lg animate-pulse" data-icon="cloud_sync">cloud_sync</span>
+<p class="font-medium tracking-tight">
+<strong>Offline Mode Active</strong> (Cached Verification Token Valid for 45 mins). Do NOT refresh or close this browser tab before boarding!
+        </p>
+</div>
+<div class="hidden lg:flex items-center gap-2 font-label-mono text-label-mono-xs bg-institute-navy-dark text-on-primary px-2.5 py-1 rounded-full">
+<span class="w-2 h-2 rounded-full bg-status-mint-glow animate-ping"></span>
+        SEC-ID: CACHE-AES256-SYNCD
+      </div>
+</div>
+</aside>
+<!-- MAIN CANVAS -->
+<main class="flex-1 w-full max-w-4xl mx-auto px-space-md py-space-md md:py-space-lg flex flex-col items-center">
+<!-- ANTI-SCREENSHOT REAL-TIME SERVER CLOCK INSTRUMENTATION -->
+<div class="w-full mb- space-md bg-institute-navy-dark text-on-primary rounded-xl p-space-md shadow-lg border border-surface-variant/20 relative overflow-hidden">
+<!-- Ambient Background Glow -->
+<div class="absolute -right-12 -top-12 w-48 h-48 bg-secondary/30 rounded-full blur-3xl pointer-events-none"></div>
+<div class="absolute -left-12 -bottom-12 w-48 h-48 bg-status-mint-glow/20 rounded-full blur-3xl pointer-events-none"></div>
+<div class="flex flex-col md:flex-row items-center justify-between gap-4 relative z-10">
+<div class="flex items-center gap-3">
+<span class="relative flex h-4 w-4">
+<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-status-mint-glow opacity-75"></span>
+<span class="relative inline-flex rounded-full h-4 w-4 bg-status-mint-glow"></span>
+</span>
+<div>
+<div class="flex items-center gap-2">
+<span class="text-label-mono-xs font-label-mono-xs tracking-widest text-transit-blue-glow uppercase">Official Telemetry Clock</span>
+<span class="bg-primary-container px-2 py-0.5 rounded text-label-mono-xs font-label-mono-xs text-on-primary border border-secondary/30">NTP-SYNCED</span>
+</div>
+<p class="text-xs text-on-primary-container">Dynamic anti-spoof frame · Microsecond hash verification</p>
+</div>
+</div>
+<!-- Live Milisecond Running Clock -->
+<div class="text-center md:text-right">
+<div class="font-ticker-lg text-ticker-lg text-transit-blue-glow tracking-tight font-bold tabular-nums" id="liveClock">
+            17:12:44.892 IST
+          </div>
+<p class="text-label-mono-xs font-label-mono-xs text-outline-variant">UPDATES: 60FPS SYNCHRONIZED</p>
+</div>
+</div>
+<!-- Real-time moving security ticker -->
+<div class="mt-3 pt-3 border-t border-institute-navy-mid/60 overflow-hidden relative">
+<div class="animate-marquee whitespace-nowrap text-label-mono-xs font-label-mono-xs text-transit-blue-subtle/80 uppercase tracking-widest">
+<span>• IIITDMJ GENUINE TICKET • NON-TRANSFERABLE • VALID FOR SINGLE COMMUTE • LIVE REFRESH ACTIVE • SECURITY HASH: 9FE4-2025-IIITDMJ • AUTHORIZED BY FLEET DIVISION • </span>
+<span>• IIITDMJ GENUINE TICKET • NON-TRANSFERABLE • VALID FOR SINGLE COMMUTE • LIVE REFRESH ACTIVE • SECURITY HASH: 9FE4-2025-IIITDMJ • AUTHORIZED BY FLEET DIVISION • </span>
+</div>
+</div>
+</div>
+<!-- MAIN PHYSICAL-METAPHOR VERIFIED PASS -->
+<div class="w-full bg-surface-card rounded-xl border border-slate-200 shadow-xl overflow-hidden relative animate-telemetry-glow">
+<!-- Continuous Color-Shift Ribbon (Anti-Counterfeit Bar) -->
+<div class="h-3 w-full animate-hologram-strip"></div>
+<!-- Ticket Top Sector: Status & Priority Pass -->
+<div class="p- space-md md:p-space-lg bg-surface-card relative">
+<!-- Header Ribbon: VALID TICKET Stamp + Pass Type -->
+<div class="flex flex-wrap items-center justify-between gap-3 pb-space-md border-b border-slate-100">
+<!-- Animated Stamp -->
+<div class="flex items-center gap-2.5 bg-status-mint-subtle border-2 border-status-mint-glow/80 px-3.5 py-1.5 rounded-lg shadow-sm">
+<span class="material-symbols-outlined text-tertiary-container font-bold text-xl" data-icon="verified">verified</span>
+<div>
+<span class="font-headline-md text-headline-md font-bold text-tertiary-container tracking-wider">VALID TICKET</span>
+<span class="block text-label-mono-xs font-label-mono-xs text-tertiary font-semibold">INSTITUTE SYSTEM CONFIRMED</span>
+</div>
+</div>
+<!-- Ticket ID Code -->
+<div class="text-right">
+<span class="text-label-mono-xs font-label-mono-xs text-outline uppercase block">Unique Ticket ID</span>
+<span class="font-ticker-md text-ticker-md text-primary font-bold tracking-tight">TKT-2025-0515-8821B</span>
+</div>
+</div>
+<!-- Priority Return Pass Glowing Golden Badge -->
+<div class="mt-space-md p-3.5 rounded-lg bg-status-gold-light/60 border border-status-gold/50 flex items-start gap-3 relative overflow-hidden">
+<div class="p-2 rounded bg-status-gold text-on-primary">
+<span class="material-symbols-outlined text-xl" data-icon="stars">stars</span>
+</div>
+<div class="flex-1">
+<div class="flex items-center gap-2">
+<span class="font-title-sm text-title-sm font-bold text-institute-navy-dark">Priority Return Pass</span>
+<span class="bg-status-gold/30 text-institute-navy-dark text-label-mono-xs font-label-mono-xs px-2 py-0.5 rounded-full font-bold">RETURN TIER-1</span>
+</div>
+<p class="text-body-sm text-body-sm text-institute-navy-mid mt-0.5">
+              Priority Return Passenger (Outward trip completed at 10:15 AM - Eligible for priority boarding on return to campus).
+            </p>
+</div>
+</div>
+<!-- Passenger Metadata Bento Grid -->
+<div class="mt-space-lg grid grid-cols-1 md:grid-cols-3 gap-3 bg-surface-canvas p-space-md rounded-lg border border-slate-200/80">
+<div class="flex items-center gap-3">
+<div class="w-12 h-12 rounded-lg bg-primary-container text-on-primary flex items-center justify-center font-bold font-headline-md">
+              AS
+            </div>
+<div>
+<span class="text-label-mono-xs font-label-mono-xs text-outline uppercase">Passenger Name</span>
+<p class="font-title-sm text-title-sm font-bold text-primary">Aryan Sharma</p>
+<span class="text-body-sm text-body-sm text-on-surface-variant">Roll No: 2022CS104</span>
+</div>
+</div>
+<div class="border-t md:border-t-0 md:border-l border-slate-200 pt-2 md:pt-0 md:pl-4">
+<span class="text-label-mono-xs font-label-mono-xs text-outline uppercase">Academic Credential</span>
+<p class="font-title-sm text-title-sm font-semibold text-primary">B.Tech CSE (Year 3)</p>
+<div class="flex items-center gap-1 text-label-mono-xs font-label-mono-xs text-tertiary-fixed-dim font-bold mt-0.5">
+<span class="material-symbols-outlined text-xs" data-icon="check_circle">check_circle</span>
+<span class="text-institute-navy-mid">Institute ID Verified</span>
+</div>
+</div>
+<div class="border-t md:border-t-0 md:border-l border-slate-200 pt-2 md:pt-0 md:pl-4">
+<span class="text-label-mono-xs font-label-mono-xs text-outline uppercase">Assigned Conductor</span>
+<p class="font-title-sm text-title-sm font-semibold text-primary">Mr. Tilak Singh</p>
+<span class="text-body-sm text-body-sm text-on-surface-variant">Badge: #EMP-0412 (Fleet Bay 1)</span>
+</div>
+</div>
+</div>
+<!-- Physical Ticket Perforation Line with negative cutout geometry -->
+<div class="relative py-2 bg-surface-card">
+<div class="ticket-perforation-left"></div>
+<div class="ticket-perforation-right"></div>
+<div class="border-t-2 border-dashed border-slate-300 w-full"></div>
+</div>
+<!-- Ticket Bottom Sector: Transit Telemetry & Vehicle Details -->
+<div class="p-space-md md:p-space-lg bg-surface-container-low/50">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-space-md items-center">
+<!-- Route Vector -->
+<div class="space-y-3">
+<div>
+<span class="text-label-mono-xs font-label-mono-xs text-outline uppercase">Transit Route Vector</span>
+<div class="flex items-center gap-2 mt-1">
+<span class="px-2 py-0.5 rounded bg-primary text-on-primary font-label-mono text-label-mono font-bold">ROUTE 01</span>
+<span class="font-headline-md text-headline-md font-bold text-primary">Campus Central Circle</span>
+<span class="material-symbols-outlined text-secondary" data-icon="arrow_forward">arrow_forward</span>
+<span class="font-headline-md text-headline-md font-bold text-secondary">Sadar Market</span>
+</div>
+</div>
+<!-- Via Stops Timeline Pill -->
+<div class="flex items-center gap-2 text-body-sm text-body-sm text-institute-navy-mid bg-white p-2.5 rounded-lg border border-slate-200">
+<span class="material-symbols-outlined text-secondary" data-icon="alt_route">alt_route</span>
+<span><strong>Via:</strong> Russel Chowk &amp; Kakartala-Gadheri</span>
+</div>
+<!-- Vehicle & Bay Specs -->
+<div class="grid grid-cols-2 gap-2 text-xs">
+<div class="bg-white p-2 rounded border border-slate-200">
+<span class="text-label-mono-xs font-label-mono-xs text-outline block">ASSIGNED VEHICLE</span>
+<span class="font-bold text-primary font-ticker-md text-body-md">Bus No. 1</span>
+<span class="text-on-surface-variant block text-label-mono-xs font-label-mono-xs">MP20 ZL1297</span>
+</div>
+<div class="bg-white p-2 rounded border border-slate-200">
+<span class="text-label-mono-xs font-label-mono-xs text-outline block">SCHEDULED DEPARTURE</span>
+<span class="font-bold text-secondary font-ticker-md text-body-md">05:15 PM</span>
+<span class="text-on-surface-variant block text-label-mono-xs font-label-mono-xs">Bay 1 (Central Circle)</span>
+</div>
+</div>
+</div>
+<!-- QR Verification for Conductor -->
+<div class="flex flex-col items-center justify-center p-space-md bg-institute-navy-dark text-on-primary rounded-xl border border-secondary/30 relative">
+<div class="text-center mb-3">
+<span class="text-label-mono-xs font-label-mono-xs tracking-wider text-status-mint-glow font-bold uppercase block">
+                SCAN TO VERIFY TICKET
+              </span>
+<span class="text-xs text-outline-variant">Scan the QR code using the conductor terminal</span>
+</div>
+<div class="bg-white p-3 rounded-xl shadow-lg border-2 border-transit-blue-glow">
+<div id="ticketQR" class="w-36 h-36 flex items-center justify-center"></div>
+</div>
+<div class="mt-3 text-center">
+<span class="inline-block px-3 py-1 rounded-full bg-surface-variant/20 text-secondary-fixed text-xs font-semibold border border-surface-glass-border">
+                QR Key: <span id="qrKey">IIITDMJ-TKT-2025-0515-8821B</span>
+              </span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- MISSION-CRITICAL BOTTOM ACTION BAR -->
+<div class="w-full mt-space-lg flex flex-col sm:flex-row items-center justify-between gap-3">
+<!-- Primary Option: Backup QR Code Viewer -->
+<button class="w-full sm:w-auto px-space-lg py-3 rounded-lg bg-primary hover:bg-institute-navy-mid text-on-primary font-semibold text-title-sm flex items-center justify-center gap-2 shadow-md active:scale-95 transition-all" type="button"> <a href="generateqr.html">
+<span class="material-symbols-outlined" data-icon="qr_code_2">qr_code_2</span>
+<span>Show QR for Scanner (Optional Backup)</span></a>
+</button>
+<!-- Emergency SOS Action -->
+<button class="w-full sm:w-auto px-space-md py-3 rounded-lg bg-error text-on-error font-semibold text-title-sm flex items-center justify-center gap-2 active:scale-95 transition-all shadow" type="button">
+<span class="material-symbols-outlined text-sm" data-icon="sos">sos</span>
+<span>Emergency SOS</span>
+</button>
+<!-- Utility Actions -->
+<div class="flex items-center gap-2 w-full sm:w-auto">
+<button class="flex-1 sm:flex-none px-4 py-3 rounded-lg bg-surface-card border border-slate-300 hover:bg-slate-50 text-institute-navy-dark font-medium text-body-md flex items-center justify-center gap-1.5 active:scale-95 transition-all" type="button">
+<span class="material-symbols-outlined text-base" data-icon="download">download</span>
+<span>Download PDF</span>
+</button>
+<a class="flex-1 sm:flex-none px-4 py-3 rounded-lg bg-surface-card border border-slate-300 hover:bg-slate-50 text-institute-navy-dark font-medium text-body-md flex items-center justify-center gap-1.5 active:scale-95 transition-all text-center" href="#timetable">
+<span class="material-symbols-outlined text-base" data-icon="calendar_month">calendar_month</span>
+<span>Fleet Schedule</span>
+</a>
+</div>
+</div>
+</main>
+<!-- FOOTER (Shared Component Source of Truth) -->
+<footer class="bg-primary dark:bg-institute-navy-dark text-on-primary dark:text-primary-fixed border-t border-primary-container dark:border-institute-navy-mid docked full-width bottom mt-space-xl">
+<div class="w-full py-space-lg px-space-md md:px-margin-desktop max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-space-md">
+<!-- Brand Copyright -->
+<div class="flex flex-col items-center md:items-start">
+<span class="text-title-sm font-title-sm font-bold text-on-primary dark:text-primary-fixed">IIITDMJ Transit Telemetry</span>
+<p class="text-body-sm font-body-sm text-outline-variant dark:text-on-surface-variant mt-1">
+          © 2025 PDPM IIITDM Jabalpur. Smart Campus Fleet &amp; Transit Automation Division.
+        </p>
+</div>
+<!-- Footer Navigation Links -->
+<nav class="flex flex-wrap justify-center gap-x-6 gap-y-2 text-body-sm font-body-sm">
+<a class="text-outline-variant dark:text-on-surface-variant hover:text-transit-blue-glow dark:hover:text-secondary-fixed-dim transition-colors duration-150 focus:outline-none focus:ring-1 focus:ring-secondary-container" href="#fleet">Campus Fleet Portal</a>
+<a class="text-outline-variant dark:text-on-surface-variant hover:text-transit-blue-glow dark:hover:text-secondary-fixed-dim transition-colors duration-150 focus:outline-none focus:ring-1 focus:ring-secondary-container" href="#directory">Route Map Directory</a>
+<a class="text-outline-variant dark:text-on-surface-variant hover:text-transit-blue-glow dark:hover:text-secondary-fixed-dim transition-colors duration-150 focus:outline-none focus:ring-1 focus:ring-secondary-container" href="#conductor">Conductor Terminal</a>
+<a class="text-outline-variant dark:text-on-surface-variant hover:text-transit-blue-glow dark:hover:text-secondary-fixed-dim transition-colors duration-150 focus:outline-none focus:ring-1 focus:ring-secondary-container" href="#support">Support Desk</a>
+<a class="text-transit-blue-glow dark:text-secondary-fixed font-semibold hover:text-transit-blue-glow dark:hover:text-secondary-fixed-dim transition-colors duration-150 focus:outline-none focus:ring-1 focus:ring-secondary-container" href="#verification">Security Verification</a>
+</nav>
+</div>
+</footer>
+<!-- REAL-TIME JAVASCRIPT FOR RUNNING DIGITAL ANTI-SCREENSHOT MILLISECOND CLOCK -->
+<script>
+    function updateClock() {
+      const now = new Date();
+      const hours = String(now.getHours()).padStart(2, '0');
+      const minutes = String(now.getMinutes()).padStart(2, '0');
+      const seconds = String(now.getSeconds()).padStart(2, '0');
+      const milliseconds = String(now.getMilliseconds()).padStart(3, '0');
+      
+      const clockElement = document.getElementById('liveClock');
+      const microSecElement = document.getElementById('microSec');
+      
+      if (clockElement) {
+        clockElement.textContent = `${hours}:${minutes}:${seconds}.${milliseconds} IST`;
+      }
+      requestAnimationFrame(updateClock);
+    }
+    const verificationKey = "IIITDMJ-TKT-2025-0515-8821B";
+    new QRCode(document.getElementById("ticketQR"), {
+      text: verificationKey,
+      width: 144,
+      height: 144,
+      correctLevel: QRCode.CorrectLevel.H
+    });
+
+    requestAnimationFrame(updateClock);
+  </script>
+</body></html>

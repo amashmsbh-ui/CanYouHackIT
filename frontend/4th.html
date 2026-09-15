@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Login | IIITDMJ Smart Transit &amp; Live Ticket System</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@500;600;700&amp;family=Space+Grotesk:wght@600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "on-primary": "#ffffff",
+            "status-gold-light": "#FEF3C7",
+            "on-tertiary-fixed": "#002113",
+            "on-primary-container": "#7490c3",
+            "primary-container": "#002855",
+            "secondary-fixed": "#cce5ff",
+            "tertiary": "#00190e",
+            "ticket-hologram-violet": "#8B5CF6",
+            "surface-container": "#e0f0ff",
+            "status-gold": "#F59E0B",
+            "on-secondary-container": "#00476e",
+            "surface-container-low": "#ebf5ff",
+            "surface": "#f6faff",
+            "on-surface": "#0e1d28",
+            "institute-navy-mid": "#1E3E62",
+            "tertiary-fixed-dim": "#4edea3",
+            "outline": "#747780",
+            "surface-container-high": "#daeaf9",
+            "background": "#f6faff",
+            "on-tertiary-fixed-variant": "#005236",
+            "status-mint-subtle": "#ECFDF5",
+            "error-container": "#ffdad6",
+            "secondary-container": "#5bb8fe",
+            "surface-variant": "#d4e4f3",
+            "primary-fixed": "#d6e3ff",
+            "surface-dim": "#ccdceb",
+            "transit-blue-subtle": "#E0F2FE",
+            "tertiary-container": "#00301e",
+            "on-secondary": "#ffffff",
+            "inverse-on-surface": "#e5f2ff",
+            "on-error": "#ffffff",
+            "inverse-primary": "#aac7fd",
+            "on-error-container": "#93000a",
+            "on-surface-variant": "#43474f",
+            "primary-fixed-dim": "#aac7fd",
+            "surface-tint": "#415f8f",
+            "institute-navy-dark": "#0B192C",
+            "outline-variant": "#c4c6d0",
+            "surface-card": "#FFFFFF",
+            "surface-bright": "#f6faff",
+            "surface-canvas": "#F8FAFC",
+            "error": "#ba1a1a",
+            "primary": "#001430",
+            "surface-glass-border": "rgba(255, 255, 255, 0.45)",
+            "secondary-fixed-dim": "#93ccff",
+            "on-tertiary": "#ffffff",
+            "surface-container-highest": "#d4e4f3",
+            "tertiary-fixed": "#6ffbbe",
+            "on-tertiary-container": "#00a472",
+            "on-secondary-fixed-variant": "#004b73",
+            "surface-container-lowest": "#ffffff",
+            "inverse-surface": "#23323d",
+            "on-background": "#0e1d28",
+            "secondary": "#006398",
+            "on-secondary-fixed": "#001d31",
+            "on-primary-fixed": "#001b3d",
+            "transit-blue-glow": "#38BDF8",
+            "on-primary-fixed-variant": "#284775",
+            "status-mint-glow": "#34D399",
+            "ticket-hologram-cyan": "#06B6D4"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          "spacing": {
+            "space-xl": "2.25rem",
+            "space-md": "1rem",
+            "space-lg": "1.5rem",
+            "margin-desktop": "3rem",
+            "gutter": "1rem",
+            "space-xs": "0.25rem",
+            "space-sm": "0.5rem",
+            "gutter-desktop": "1.5rem",
+            "margin-tablet": "2rem",
+            "margin": "1rem"
+          },
+          "fontFamily": {
+            "label-mono-xs": ["JetBrains Mono"],
+            "headline-lg-mobile": ["Space Grotesk"],
+            "display-hero-mobile": ["Space Grotesk"],
+            "title-sm": ["Inter"],
+            "ticker-lg": ["JetBrains Mono"],
+            "label-mono": ["JetBrains Mono"],
+            "headline-lg": ["Space Grotesk"],
+            "headline-md": ["Space Grotesk"],
+            "ticker-md": ["JetBrains Mono"],
+            "body-md": ["Inter"],
+            "display-hero": ["Space Grotesk"],
+            "body-lg": ["Inter"],
+            "body-sm": ["Inter"]
+          },
+          "fontSize": {
+            "label-mono-xs": ["10px", {"lineHeight": "12px", "letterSpacing": "0.08em", "fontWeight": "600"}],
+            "headline-lg-mobile": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+            "display-hero-mobile": ["30px", {"lineHeight": "36px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+            "title-sm": ["16px", {"lineHeight": "24px", "letterSpacing": "0em", "fontWeight": "600"}],
+            "ticker-lg": ["28px", {"lineHeight": "32px", "letterSpacing": "-0.04em", "fontWeight": "700"}],
+            "label-mono": ["12px", {"lineHeight": "16px", "letterSpacing": "0.04em", "fontWeight": "500"}],
+            "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+            "headline-md": ["20px", {"lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+            "ticker-md": ["18px", {"lineHeight": "24px", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+            "body-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "400"}],
+            "display-hero": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.03em", "fontWeight": "700"}],
+            "body-lg": ["16px", {"lineHeight": "24px", "letterSpacing": "0em", "fontWeight": "400"}],
+            "body-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "400"}]
+          }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="bg-surface-canvas text-on-surface antialiased min-h-screen flex flex-col justify-between selection:bg-secondary-fixed selection:text-on-secondary-fixed relative overflow-x-hidden font-body-md text-body-md">
+<!-- Ambient Campus Grid & Architectural Graphic Canvas -->
+<div class="fixed inset-0 pointer-events-none z-0 opacity-40">
+<div class="absolute inset-0 bg-[radial-gradient(#002855_1px,transparent_1px)] [background-size:24px_24px]"></div>
+<div class="absolute -top-32 -left-32 w-96 h-96 bg-secondary-fixed rounded-full blur-3xl opacity-30"></div>
+<div class="absolute top-1/2 -right-40 w-[30rem] h-[30rem] bg-surface-container rounded-full blur-3xl opacity-40"></div>
+</div>
+<!-- Top Micro Status Bar / Utility Header -->
+<header class="relative z-10 w-full px-space-md py-space-sm border-b border-surface-variant bg-surface-card/80 backdrop-blur-md">
+<div class="max-w-7xl mx-auto flex items-center justify-between">
+<div class="flex items-center gap-space-sm">
+<span class="inline-block w-2.5 h-2.5 rounded-full bg-status-mint-glow animate-pulse"></span>
+<span class="font-label-mono-xs text-label-mono-xs text-on-surface-variant tracking-wider">GATEWAY NODE 01 • CAMPUS FLEET TELEMETRY ONLINE</span>
+</div>
+<div class="flex items-center gap-space-md">
+<div class="flex items-center gap-1.5 px-2.5 py-1 bg-surface-container-low rounded border border-surface-variant text-on-surface-variant">
+<span class="material-symbols-outlined text-[14px]" data-icon="lock">lock</span>
+<span class="font-label-mono-xs text-label-mono-xs text-on-surface font-semibold">256-BIT SSL ENCRYPTED</span>
+</div>
+<div class="hidden sm:flex items-center gap-1.5 px-2.5 py-1 rounded bg-status-mint-subtle border border-tertiary-fixed-dim/40 text-on-tertiary-fixed-variant">
+<span class="material-symbols-outlined text-[14px] text-tertiary-fixed-dim" data-icon="verified_user">verified_user</span>
+<span class="font-label-mono-xs text-label-mono-xs font-bold">PDPM IIITDMJ SSO</span>
+</div>
+</div>
+</div>
+</header>
+<!-- Main Centered Authentication Journey -->
+<main class="relative z-10 flex-1 flex items-center justify-center px-4 py-8 sm:py-12">
+<div class="w-full max-w-[480px]">
+<!-- Institutional Identity Header -->
+<div class="text-center mb-6">
+<div class="inline-flex items-center justify-center p-3 rounded-xl bg-primary-container shadow-md border border-institute-navy-mid mb-3">
+<span class="material-symbols-outlined text-transit-blue-glow text-3xl" data-icon="directions_bus">directions_bus</span>
+</div>
+<h1 class="font-headline-lg-mobile sm:font-headline-lg text-headline-lg-mobile sm:text-headline-lg text-primary tracking-tight">
+          PDPM IIITDM Jabalpur
+        </h1>
+<p class="font-body-md text-body-md text-on-surface-variant mt-1">
+          Smart Campus Fleet &amp; Live Transit Portal
+        </p>
+</div>
+<!-- Core Login Card (Micro-Glassmorphic Surface Level 1) -->
+<div class="bg-surface-card rounded-xl border border-outline-variant shadow-md overflow-hidden relative">
+<!-- Live Transit Security Banner Ribbon -->
+<div class="bg-primary px-space-md py-2.5 flex items-center justify-between text-on-primary border-b border-institute-navy-mid">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary-fixed text-[18px]" data-icon="badge">badge</span>
+<span class="font-label-mono text-label-mono text-secondary-fixed">INSTITUTE IDENTITY AUTHENTICATION</span>
+</div>
+<span class="font-label-mono-xs text-label-mono-xs bg-institute-navy-mid px-2 py-0.5 rounded text-transit-blue-glow border border-transit-blue-glow/30">v2.4-STABLE</span>
+</div>
+<form class="p-space-lg space-y-5" onsubmit="event.preventDefault();">
+<!-- Institute Email Field Group -->
+<div class="space-y-1.5">
+<div class="flex items-center justify-between">
+<label class="font-title-sm text-title-sm text-primary flex items-center gap-1.5" for="email">
+                Institute Email ID
+                <span class="text-error font-body-sm text-body-sm">*</span>
+</label>
+<span class="font-label-mono-xs text-label-mono-xs text-secondary font-semibold">STUDENTS &amp; FACULTY</span>
+</div>
+<div class="relative">
+<div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-outline">
+<span class="material-symbols-outlined text-[20px]" data-icon="alternate_email">alternate_email</span>
+</div>
+<input class="block w-full h-12 pl-11 pr-10 rounded-lg border border-outline-variant bg-surface-canvas text-on-surface font-body-md text-body-md placeholder:text-outline focus:border-secondary focus:ring-2 focus:ring-secondary/20 focus:bg-surface-card transition-all" id="email" placeholder="roll_number@iiitdmj.ac.in" required="" type="email" value="22bcs084@iiitdmj.ac.in"/>
+<div class="absolute inset-y-0 right-0 pr-3.5 flex items-center text-status-mint-glow">
+<span class="material-symbols-outlined text-[20px]" data-icon="check_circle">check_circle</span>
+</div>
+</div>
+<!-- Validation Guidance Tooltip -->
+<div class="flex items-center gap-1.5 px-2.5 py-1 rounded bg-surface-container-low border border-surface-variant text-on-secondary-container">
+<span class="material-symbols-outlined text-[15px] text-secondary" data-icon="info">info</span>
+<span class="font-label-mono-xs text-label-mono-xs">Use your official <span class="font-bold underline">@iiitdmj.ac.in</span> institutional domain</span>
+</div>
+</div>
+<!-- Segmented 6-Digit OTP Field Group -->
+<div class="space-y-2 pt-1">
+<div class="flex items-center justify-between">
+<label class="font-title-sm text-title-sm text-primary flex items-center gap-1.5">
+                Enter Password
+                <span class="text-error font-body-sm text-body-sm">*</span>
+</label>
+</div>
+<!-- 6 PIN Cells for High-Glanceability Mobile Input -->
+<div class="grid grid-cols-6 gap-2">
+<input aria-label="Digit 1" class="w-full h-12 text-center font-ticker-md text-ticker-md font-bold rounded-lg border border-outline-variant bg-surface-card text-primary focus:border-secondary focus:ring-2 focus:ring-secondary/20 shadow-sm" maxlength="1" type="text" value="7"/>
+<input aria-label="Digit 2" class="w-full h-12 text-center font-ticker-md text-ticker-md font-bold rounded-lg border border-outline-variant bg-surface-card text-primary focus:border-secondary focus:ring-2 focus:ring-secondary/20 shadow-sm" maxlength="1" type="text" value="4"/>
+<input aria-label="Digit 3" class="w-full h-12 text-center font-ticker-md text-ticker-md font-bold rounded-lg border border-outline-variant bg-surface-card text-primary focus:border-secondary focus:ring-2 focus:ring-secondary/20 shadow-sm" maxlength="1" type="text" value="9"/>
+<input aria-label="Digit 4" class="w-full h-12 text-center font-ticker-md text-ticker-md font-bold rounded-lg border border-outline-variant bg-surface-card text-primary focus:border-secondary focus:ring-2 focus:ring-secondary/20 shadow-sm" maxlength="1" type="text" value="7"/>
+<input aria-label="Digit 5" class="w-full h-12 text-center font-ticker-md text-ticker-md font-bold rounded-lg border border-outline-variant bg-surface-card text-primary focus:border-secondary focus:ring-2 focus:ring-secondary/20 shadow-sm" maxlength="1" type="text" value="4"/>
+<input aria-label="Digit 6" class="w-full h-12 text-center font-ticker-md text-ticker-md font-bold rounded-lg border border-outline-variant bg-surface-card text-primary focus:border-secondary focus:ring-2 focus:ring-secondary/20 shadow-sm" maxlength="1" type="text" value="9"/>
+
+</div>
+<!-- Micro Dispatch Status Badge -->
+<div class="flex items-center justify-between pt-1">
+<div class="flex items-center gap-1.5 text-on-surface-variant font-body-sm text-body-sm">
+<span class="material-symbols-outlined text-[16px] text-outline" data-icon="mark_email_read">mark_email_read</span>
+<span>Forgot password</span>
+</div>
+<a class="inline-flex items-center gap-1 font-label-mono-xs text-label-mono-xs text-secondary hover:text-primary transition-colors font-semibold" href="forgotpassword.html">
+<span >Click Here</span>
+<span class="material-symbols-outlined text-[13px]" data-icon="open_in_new">open_in_new</span>
+</a>
+</div>
+</div>
+<!-- Persistence Checkbox -->
+<div class="flex items-start gap-2.5 pt-1">
+<input checked="" class="w-4 h-4 mt-0.5 rounded text-primary border-outline focus:ring-secondary" id="remember" type="checkbox"/>
+<label class="font-body-sm text-body-sm text-on-surface select-none cursor-pointer" for="remember">
+<span class="font-medium text-primary">Remember this device for 30 days (1 month)</span>
+<p class="text-on-surface-variant font-body-sm text-body-sm text-xs">Safe for personal smartphones and registered institute laptops.</p>
+</label>
+</div>
+<!-- Primary Submit Action Button -->
+<div class="pt-2">
+<button class="w-full h-12 rounded-lg bg-primary-container hover:bg-institute-navy-mid active:scale-[0.98] text-on-primary font-title-sm text-title-sm flex items-center justify-center gap-2 shadow-md transition-all duration-150 relative overflow-hidden group" type="submit">
+<span class="material-symbols-outlined text-[20px] text-transit-blue-glow group-hover:translate-x-0.5 transition-transform" data-icon="directions_bus">directions_bus</span>
+<span>Verify &amp; Login to Transit</span>
+<span class="material-symbols-outlined text-[18px] text-transit-blue-glow" data-icon="arrow_forward">arrow_forward</span>
+</button>
+</div>
+<!-- Separator Line -->
+<div class="relative my-4 flex items-center justify-center">
+<div class="border-t border-surface-variant w-full"></div>
+<span class="bg-surface-card px-3 font-label-mono-xs text-label-mono-xs text-outline uppercase tracking-wider">Operational Roles</span>
+</div>
+<!-- Quick Institutional Portals & Emergency Matrix -->
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+<a class="flex items-center justify-between p-2.5 rounded-lg border border-surface-variant bg-surface-canvas hover:bg-surface-container-low transition-colors group" href="#">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px] text-primary" data-icon="badge">badge</span>
+<span class="font-title-sm text-title-sm text-xs text-primary font-medium">Fleet Admin Portal</span>
+</div>
+<span class="material-symbols-outlined text-[16px] text-outline group-hover:text-secondary transition-colors" data-icon="chevron_right">chevron_right</span>
+</a>
+<a class="flex items-center justify-between p-2.5 rounded-lg border border-error-container bg-surface-canvas hover:bg-error-container/20 transition-colors group" href="tel:07612794000">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px] text-error" data-icon="emergency">emergency</span>
+<div class="leading-tight">
+<span class="block font-title-sm text-title-sm text-xs text-error font-medium">Security Gate 1</span>
+<span class="font-label-mono-xs text-label-mono-xs text-on-surface-variant">Helpline SOS</span>
+</div>
+</div>
+<span class="material-symbols-outlined text-[16px] text-error" data-icon="call">call</span>
+</a>
+</div>
+</form>
+<!-- Dynamic Micro Anti-Fraud & Offline Sync Footer Ribbon -->
+<div class="bg-surface-container-low px-space-md py-3 border-t border-surface-variant flex flex-col sm:flex-row items-center justify-between gap-2">
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-status-mint-glow text-[16px]" data-icon="cloud_done">cloud_done</span>
+<span class="font-label-mono-xs text-label-mono-xs text-on-surface-variant">Offline caching enabled for saved passes</span>
+</div>
+<div class="flex items-center gap-2 text-on-surface-variant font-label-mono-xs text-label-mono-xs">
+<span class="w-1.5 h-1.5 rounded-full bg-status-gold animate-ping"></span>
+<span>FLEET SYNC: ACTIVE</span>
+</div>
+</div>
+</div>
+<!-- Assistance & System Diagnostics Notice -->
+<div class="mt-6 text-center space-y-2">
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+          Forgot your institute credentials? Visit the 
+          <a class="text-secondary font-semibold hover:underline" href="#">CCF Helpdesk (Computer Center)</a>
+</p>
+<div class="flex items-center justify-center gap-4 text-outline font-label-mono-xs text-label-mono-xs">
+<span>CAMPUS AP-IS: ONLINE</span>
+<span>•</span>
+<span>LATENCY: 18ms</span>
+<span>•</span>
+<span>IP: 172.26.x.x (INTERNAL)</span>
+</div>
+</div>
+</div>
+</main>
+<!-- Institutional Copyright Shell Footer adhering to Shared Components Identity -->
+<footer class="relative z-10 w-full py-space-md px-space-md md:px-margin-desktop border-t border-surface-variant bg-surface-card">
+<div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-space-sm text-center md:text-left">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[18px]" data-icon="school">school</span>
+<p class="font-label-mono-xs text-label-mono-xs text-on-surface-variant">
+          © 2025 PDPM IIITDM Jabalpur. Smart Campus Fleet &amp; Transit Automation Division.
+        </p>
+</div>
+<div class="flex items-center gap-space-md font-label-mono-xs text-label-mono-xs text-outline">
+<a class="hover:text-primary transition-colors" href="1st.html">Campus Fleet Portal</a>
+<span>•</span>
+<a class="hover:text-primary transition-colors" href="2nd.html">a valid ticket</a>
+<span>•</span>
+<a class="hover:text-primary transition-colors" href="3rd.html">Payment</a>
+</div>
+</div>
+</footer>
+<!-- Micro-interaction: Countdown timer script for OTP -->
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+      let seconds = 42;
+      const clockElement = document.getElementById('countdown-clock');
+      
+      const interval = setInterval(() => {
+        seconds--;
+        if (seconds <= 0) {
+          clearInterval(interval);
+          clockElement.innerHTML = `<button onclick="location.reload()" class="text-secondary font-bold underline">Resend OTP</button>`;
+        } else {
+          const formatted = seconds < 10 ? `0${seconds}` : seconds;
+          clockElement.textContent = `Resend in 00:${formatted}`;
+        }
+      }, 1000);
+    });
+  </script>
+</body></html>

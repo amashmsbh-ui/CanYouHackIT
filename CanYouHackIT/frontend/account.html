@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>Account | IIITDMJ Smart Transit & Live Ticket System</title>
+  <link href="https://fonts.googleapis.com" rel="preconnect"/>
+  <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600;700&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "on-primary": "#ffffff",
+            "status-gold-light": "#FEF3C7",
+            "on-tertiary-fixed": "#002113",
+            "on-primary-container": "#7490c3",
+            "primary-container": "#002855",
+            "secondary-fixed": "#cce5ff",
+            "tertiary": "#00190e",
+            "ticket-hologram-violet": "#8B5CF6",
+            "surface-container": "#e0f0ff",
+            "status-gold": "#F59E0B",
+            "on-secondary-container": "#00476e",
+            "surface-container-low": "#ebf5ff",
+            "surface": "#f6faff",
+            "on-surface": "#0e1d28",
+            "institute-navy-mid": "#1E3E62",
+            "tertiary-fixed-dim": "#4edea3",
+            "outline": "#747780",
+            "surface-container-high": "#daeaf9",
+            "background": "#f6faff",
+            "on-tertiary-fixed-variant": "#005236",
+            "status-mint-subtle": "#ECFDF5",
+            "error-container": "#ffdad6",
+            "secondary-container": "#5bb8fe",
+            "surface-variant": "#d4e4f3",
+            "primary-fixed": "#d6e3ff",
+            "surface-dim": "#ccdceb",
+            "transit-blue-subtle": "#E0F2FE",
+            "tertiary-container": "#00301e",
+            "on-secondary": "#ffffff",
+            "inverse-on-surface": "#e5f2ff",
+            "on-error": "#ffffff",
+            "inverse-primary": "#aac7fd",
+            "on-error-container": "#93000a",
+            "on-surface-variant": "#43474f",
+            "primary-fixed-dim": "#aac7fd",
+            "surface-tint": "#415f8f",
+            "institute-navy-dark": "#0B192C",
+            "outline-variant": "#c4c6d0",
+            "surface-card": "#FFFFFF",
+            "surface-bright": "#f6faff",
+            "surface-canvas": "#F8FAFC",
+            "error": "#ba1a1a",
+            "primary": "#001430",
+            "surface-glass-border": "rgba(255, 255, 255, 0.45)",
+            "secondary-fixed-dim": "#93ccff",
+            "on-tertiary": "#ffffff",
+            "surface-container-highest": "#d4e4f3",
+            "tertiary-fixed": "#6ffbbe",
+            "on-tertiary-container": "#00a472",
+            "on-secondary-fixed-variant": "#004b73",
+            "surface-container-lowest": "#ffffff",
+            "inverse-surface": "#23323d",
+            "on-background": "#0e1d28",
+            "secondary": "#006398",
+            "on-secondary-fixed": "#001d31",
+            "on-primary-fixed": "#001b3d",
+            "transit-blue-glow": "#38BDF8",
+            "on-primary-fixed-variant": "#284775",
+            "status-mint-glow": "#34D399",
+            "ticket-hologram-cyan": "#06B6D4"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          "spacing": {
+            "space-xl": "2.25rem",
+            "space-md": "1rem",
+            "space-lg": "1.5rem",
+            "margin-desktop": "3rem",
+            "gutter": "1rem",
+            "space-xs": "0.25rem",
+            "space-sm": "0.5rem",
+            "gutter-desktop": "1.5rem",
+            "margin-tablet": "2rem",
+            "margin": "1rem"
+          },
+          "fontFamily": {
+            "label-mono-xs": ["JetBrains Mono"],
+            "headline-lg-mobile": ["Space Grotesk"],
+            "display-hero-mobile": ["Space Grotesk"],
+            "title-sm": ["Inter"],
+            "ticker-lg": ["JetBrains Mono"],
+            "label-mono": ["JetBrains Mono"],
+            "headline-lg": ["Space Grotesk"],
+            "headline-md": ["Space Grotesk"],
+            "ticker-md": ["JetBrains Mono"],
+            "body-md": ["Inter"],
+            "display-hero": ["Space Grotesk"],
+            "body-lg": ["Inter"],
+            "body-sm": ["Inter"]
+          },
+          "fontSize": {
+            "label-mono-xs": ["10px", { "lineHeight": "12px", "letterSpacing": "0.08em", "fontWeight": "600" }],
+            "headline-lg-mobile": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+            "display-hero-mobile": ["30px", { "lineHeight": "36px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+            "title-sm": ["16px", { "lineHeight": "24px", "letterSpacing": "0em", "fontWeight": "600" }],
+            "ticker-lg": ["28px", { "lineHeight": "32px", "letterSpacing": "-0.04em", "fontWeight": "700" }],
+            "label-mono": ["12px", { "lineHeight": "16px", "letterSpacing": "0.04em", "fontWeight": "500" }],
+            "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+            "headline-md": ["20px", { "lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+            "ticker-md": ["18px", { "lineHeight": "24px", "letterSpacing": "-0.02em", "fontWeight": "600" }],
+            "body-md": ["14px", { "lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "400" }],
+            "display-hero": ["40px", { "lineHeight": "48px", "letterSpacing": "-0.03em", "fontWeight": "700" }],
+            "body-lg": ["16px", { "lineHeight": "24px", "letterSpacing": "0em", "fontWeight": "400" }],
+            "body-sm": ["12px", { "lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "400" }]
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      display: inline-block;
+      vertical-align: middle;
+      line-height: 1;
+    }
+    .profile-placeholder {
+      background: linear-gradient(135deg, var(--color-primary-container, #002855) 0%, var(--color-institute-navy-mid, #1E3E62) 100%);
+    }
+  </style>
+</head>
+<body class="bg-surface-canvas text-on-surface font-body-md text-body-md antialiased selection:bg-secondary-container selection:text-on-secondary-container">
+  <!-- HEADER -->
+  <header class="bg-primary-container dark:bg-institute-navy-dark text-on-primary dark:text-primary-fixed sticky top-0 z-50 border-b border-surface-glass-border shadow-md">
+    <div class="flex justify-between items-center w-full px-space-md md:px-margin-desktop max-w-7xl mx-auto h-16">
+      <div class="flex items-center gap-space-sm">
+        <div class="w-9 h-9 rounded-lg bg-institute-navy-mid flex items-center justify-center text-transit-blue-glow shadow-inner border border-transit-blue-glow/30">
+          <span class="material-symbols-outlined" data-icon="directions_bus">directions_bus</span>
+        </div>
+        <div class="flex flex-col">
+          <span class="text-headline-md font-headline-md font-bold tracking-tight text-on-primary dark:text-primary-fixed">IIITDMJ Transit</span>
+          <div class="flex items-center gap-1.5">
+            <span class="w-2 h-2 rounded-full bg-status-mint-glow animate-ping"></span>
+            <span class="text-label-mono-xs font-label-mono-xs text-secondary-fixed">Server Sync: Online</span>
+          </div>
+        </div>
+      </div>
+      <nav class="hidden md:flex items-center gap-space-lg">
+        <a class="text-on-primary-container dark:text-outline-variant font-medium hover:text-transit-blue-glow dark:hover:text-secondary-fixed transition-colors duration-150" href="dashboard.html">Dashboard</a>
+        <a class="text-on-primary-container dark:text-outline-variant font-medium hover:text-transit-blue-glow dark:hover:text-secondary-fixed transition-colors duration-150" href="tickets.html">My Passes</a>
+        <a class="text-on-primary-container dark:text-outline-variant font-medium hover:text-transit-blue-glow dark:hover:text-secondary-fixed transition-colors duration-150" href="checkout.html">Quick Booking</a>
+      </nav>
+      <div class="flex items-center gap-space-sm md:gap-space-md">
+        <button class="p-1.5 rounded-lg hover:text-on-primary transition-colors" title="Notifications" aria-label="Notifications" onclick="window.location.href='notifications.html'">
+          <span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+        </button>
+        <button class="p-1.5 rounded-lg hover:text-on-primary transition-colors" title="Account" aria-label="Account" onclick="window.location.href='account.html'">
+          <span class="material-symbols-outlined" data-icon="account_circle">account_circle</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main class="max-w-7xl mx-auto px-space-md md:px-margin-desktop py-space-lg">
+    <!-- Breadcrumb -->
+    <nav aria-label="Breadcrumb" class="mb-space-lg">
+      <div class="flex items-center space-x-2 text-label-mono font-label-mono">
+        <a class="text-outline hover:text-primary transition-colors flex items-center gap-1" href="dashboard.html">
+          <span class="material-symbols-outlined text-sm" data-icon="dashboard">dashboard</span>
+          <span>Dashboard</span>
+        </a>
+        <span class="text-outline-variant">/</span>
+        <span class="text-primary font-semibold">Account</span>
+      </div>
+    </nav>
+
+    <!-- Page Title -->
+    <div class="mb-space-lg flex justify-between items-center">
+      <div>
+        <h1 class="text-headline-lg font-headline-lg text-on-surface font-semibold">Account Details</h1>
+        <p class="text-body-sm text-on-surface-variant mt-1">Manage your profile and account settings.</p>
+      </div>
+      <button id="logout-btn" class="px-4 py-2 bg-error-container text-on-error-container rounded-lg font-semibold hover:bg-error-container/80 transition-colors">
+        Logout
+      </button>
+    </div>
+
+    <!-- Main Content Grid -->
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-space-lg">
+      <!-- Profile Card (Left Column) -->
+      <div class="lg:col-span-1">
+        <div class="bg-surface-card rounded-xl border border-outline-variant/40 shadow-lg overflow-hidden">
+          <!-- Profile Header Background -->
+          <div class="h-24 bg-gradient-to-r from-primary-container to-institute-navy-mid"></div>
+          
+          <!-- Profile Content -->
+          <div class="px-space-md py-space-lg relative">
+            <!-- Profile Image -->
+            <div class="flex justify-center -mt-16 mb-space-md">
+              <div id="profileImage" class="w-32 h-32 rounded-full profile-placeholder flex items-center justify-center border-4 border-surface-card shadow-lg overflow-hidden">
+                <span class="material-symbols-outlined text-6xl text-transit-blue-glow">account_circle</span>
+              </div>
+            </div>
+
+            <!-- Role Chip -->
+            <div class="flex justify-center mb-space-md">
+              <div id="roleChip" class="inline-flex items-center px-3 py-1.5 rounded-full bg-surface-container-low border border-outline-variant/40">
+                <span class="text-label-mono-xs font-label-mono-xs text-primary font-semibold">LOADING...</span>
+              </div>
+            </div>
+
+            <!-- Profile Name -->
+            <div class="text-center mb-space-lg">
+              <h2 id="profileName" class="text-headline-md font-headline-md text-primary font-bold">—</h2>
+              <p id="profileSubtitle" class="text-body-sm text-on-surface-variant mt-1">—</p>
+            </div>
+
+            <!-- Profile Details -->
+            <div id="profileDetails" class="space-y-3 border-t border-outline-variant/30 pt-space-md">
+              <!-- Details will be injected here -->
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Details Section (Right Column) -->
+      <div class="lg:col-span-2 space-y-space-lg">
+        <!-- Student Details Card -->
+        <div id="studentCard" class="hidden bg-surface-card rounded-xl border border-outline-variant/40 shadow-lg p-space-lg">
+          <h3 class="text-headline-md font-headline-md text-on-surface font-semibold mb-space-lg flex items-center gap-2">
+            <span class="material-symbols-outlined text-secondary" data-icon="person">person</span>
+            Personal Information
+          </h3>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-space-md">
+            <div>
+              <span class="text-label-mono-xs font-label-mono-xs text-outline uppercase">Student Name</span>
+              <p id="studentName" class="text-title-sm font-title-sm text-primary font-bold mt-1">—</p>
+            </div>
+            <div>
+              <span class="text-label-mono-xs font-label-mono-xs text-outline uppercase">Institute Email</span>
+              <p id="studentEmail" class="text-title-sm font-title-sm text-primary font-bold mt-1">—</p>
+            </div>
+            <div>
+              <span class="text-label-mono-xs font-label-mono-xs text-outline uppercase">Roll Number</span>
+              <p id="studentRoll" class="text-title-sm font-title-sm text-primary font-bold mt-1">—</p>
+            </div>
+            <div>
+              <span class="text-label-mono-xs font-label-mono-xs text-outline uppercase">Account Type</span>
+              <p class="text-title-sm font-title-sm text-primary font-bold mt-1">Student</p>
+            </div>
+            <div class="md:col-span-2">
+              <span class="text-label-mono-xs font-label-mono-xs text-outline uppercase">Active Session ID</span>
+              <p id="studentSessionId" class="text-title-sm font-label-mono text-primary font-bold mt-1">—</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Conductor Details Card -->
+        <div id="conductorCard" class="hidden bg-surface-card rounded-xl border border-outline-variant/40 shadow-lg p-space-lg">
+          <h3 class="text-headline-md font-headline-md text-on-surface font-semibold mb-space-lg flex items-center gap-2">
+            <span class="material-symbols-outlined text-secondary" data-icon="badge">badge</span>
+            Staff Information
+          </h3>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-space-md">
+            <div>
+              <span class="text-label-mono-xs font-label-mono-xs text-outline uppercase">Conductor Name</span>
+              <p id="conductorName" class="text-title-sm font-title-sm text-primary font-bold mt-1">—</p>
+            </div>
+            <div>
+              <span class="text-label-mono-xs font-label-mono-xs text-outline uppercase">Staff Role</span>
+              <p id="conductorRole" class="text-title-sm font-title-sm text-primary font-bold mt-1">—</p>
+            </div>
+            <div>
+              <span class="text-label-mono-xs font-label-mono-xs text-outline uppercase">Phone Number</span>
+              <p id="conductorPhone" class="text-title-sm font-title-sm text-primary font-bold mt-1">—</p>
+            </div>
+            <div>
+              <span class="text-label-mono-xs font-label-mono-xs text-outline uppercase">In-Charge Bus</span>
+              <p id="conductorBus" class="text-title-sm font-title-sm text-primary font-bold mt-1">—</p>
+            </div>
+            <div class="md:col-span-2">
+              <span class="text-label-mono-xs font-label-mono-xs text-outline uppercase">Bus Registration</span>
+              <p id="conductorRegistration" class="text-title-sm font-title-sm text-primary font-bold mt-1">—</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Today's Duty Trips (Conductor Only) -->
+        <div id="dutyTripsCard" class="hidden bg-surface-card rounded-xl border border-outline-variant/40 shadow-lg overflow-hidden">
+          <div class="bg-primary-container text-on-primary p-space-md border-b border-outline-variant/40">
+            <h3 class="text-title-sm font-title-sm font-bold flex items-center gap-2">
+              <span class="material-symbols-outlined">schedule</span>
+              Today's Duty Trips Schedule
+            </h3>
+            <p class="text-label-mono-xs text-on-primary-container mt-1">Chronological list of assigned trips</p>
+          </div>
+
+          <div id="dutyTripsList" class="divide-y divide-outline-variant/30">
+            <!-- Trip items will be injected here -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="bg-primary dark:bg-institute-navy-dark text-on-primary dark:text-primary-fixed border-t border-primary-container dark:border-institute-navy-mid mt-space-xl">
+    <div class="w-full py-space-lg px-space-md md:px-margin-desktop max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-space-md">
+      <div class="flex flex-col items-center md:items-start">
+        <span class="text-title-sm font-title-sm font-bold text-on-primary">IIITDMJ Transit</span>
+        <p class="text-body-sm font-body-sm text-outline-variant mt-1">© 2025 PDPM IIITDM Jabalpur. Smart Campus Fleet & Transit Automation Division.</p>
+      </div>
+      <nav class="flex flex-wrap justify-center gap-x-6 gap-y-2 text-body-sm font-body-sm">
+        <a class="text-outline-variant hover:text-transit-blue-glow transition-colors duration-150" href="#">Privacy</a>
+        <a class="text-outline-variant hover:text-transit-blue-glow transition-colors duration-150" href="#">Terms</a>
+        <a class="text-outline-variant hover:text-transit-blue-glow transition-colors duration-150" href="#">Support</a>
+      </nav>
+    </div>
+  </footer>
+
+  <script>
+    // Determine user role and data from global state
+    function loadProfile() {
+      if (!window.transitUser) {
+        window.location.href = 'index.html';
+        return;
+      }
+      
+      const user = window.transitUser;
+      const userRole = user.role.toLowerCase();
+
+      // Setup Logout button
+      document.getElementById('logout-btn').addEventListener('click', () => {
+        localStorage.removeItem('transit_token');
+        localStorage.removeItem('transit_user');
+        window.location.href = 'index.html';
+      });
+
+      // Update role chip
+      const roleChip = document.getElementById('roleChip');
+      roleChip.className = userRole === 'conductor' 
+        ? 'inline-flex items-center px-3 py-1.5 rounded-full bg-institute-navy-mid border border-transit-blue-glow/40'
+        : 'inline-flex items-center px-3 py-1.5 rounded-full bg-surface-container-low border border-outline-variant/40';
+      roleChip.innerHTML = `<span class="text-label-mono-xs font-label-mono-xs text-${userRole === 'conductor' ? 'transit-blue-glow' : 'primary'} font-semibold">${userRole === 'conductor' ? 'CONDUCTOR STAFF' : 'STUDENT'}</span>`;
+
+      // Update profile name
+      document.getElementById('profileName').textContent = user.name;
+      
+      // Update initials
+      const initials = user.name ? user.name.substring(0, 2).toUpperCase() : 'US';
+      const profileImage = document.getElementById('profileImage');
+      profileImage.innerHTML = `<span class="text-4xl font-bold text-transit-blue-glow">${initials}</span>`;
+
+      if (userRole === 'student') {
+        document.getElementById('profileSubtitle').textContent = `Roll: ${user.rollNumber || 'N/A'}`;
+        renderStudentProfile(user);
+      } else {
+        document.getElementById('profileSubtitle').textContent = 'Fleet Operations';
+        renderConductorProfile(user);
+      }
+
+      // Render profile details sidebar
+      renderProfileDetails(user, userRole);
+    }
+
+    function renderProfileDetails(user, userRole) {
+      const profileDetails = document.getElementById('profileDetails');
+      let details = '';
+
+      if (userRole === 'student') {
+        details = `
+          <div>
+            <span class="text-label-mono-xs font-label-mono-xs text-outline block mb-1">EMAIL</span>
+            <p class="text-body-sm text-primary font-medium break-all">${user.email}</p>
+          </div>
+          <div>
+            <span class="text-label-mono-xs font-label-mono-xs text-outline block mb-1">ROLL NUMBER</span>
+            <p class="text-body-sm text-primary font-medium">${user.rollNumber || 'N/A'}</p>
+          </div>
+          <div>
+            <span class="text-label-mono-xs font-label-mono-xs text-outline block mb-1">SESSION ID</span>
+            <p class="text-label-mono font-label-mono text-primary font-bold text-sm">#JBP-TR-8821</p>
+          </div>
+        `;
+      } else {
+        details = `
+          <div>
+            <span class="text-label-mono-xs font-label-mono-xs text-outline block mb-1">EMAIL</span>
+            <p class="text-body-sm text-primary font-medium">${user.email}</p>
+          </div>
+          <div>
+            <span class="text-label-mono-xs font-label-mono-xs text-outline block mb-1">BUS NUMBER</span>
+            <p class="text-body-sm text-primary font-medium">Assigned on Duty</p>
+          </div>
+          <div>
+            <span class="text-label-mono-xs font-label-mono-xs text-outline block mb-1">SESSION</span>
+            <p class="text-label-mono font-label-mono text-primary font-bold text-sm">Active</p>
+          </div>
+        `;
+      }
+
+      profileDetails.innerHTML = details;
+    }
+
+    function renderStudentProfile(user) {
+      document.getElementById('studentCard').classList.remove('hidden');
+      document.getElementById('conductorCard').classList.add('hidden');
+      document.getElementById('dutyTripsCard').classList.add('hidden');
+
+      document.getElementById('studentName').textContent = user.name;
+      document.getElementById('studentEmail').textContent = user.email;
+      document.getElementById('studentRoll').textContent = user.rollNumber || 'N/A';
+      document.getElementById('studentSessionId').textContent = 'Live Session Active';
+    }
+
+    function renderConductorProfile(user) {
+      document.getElementById('conductorCard').classList.remove('hidden');
+      document.getElementById('studentCard').classList.add('hidden');
+      document.getElementById('dutyTripsCard').classList.remove('hidden');
+
+      document.getElementById('conductorName').textContent = user.name;
+      document.getElementById('conductorRole').textContent = 'Conductor / Driver';
+      document.getElementById('conductorPhone').textContent = user.email; // Using email in place of phone for now
+      document.getElementById('conductorBus').textContent = 'Check Schedule';
+      document.getElementById('conductorRegistration').textContent = 'N/A';
+
+      fetchAndRenderDutyTrips();
+    }
+
+    async function fetchAndRenderDutyTrips() {
+      const tripsList = document.getElementById('dutyTripsList');
+      tripsList.innerHTML = '<div class="p-4 text-center">Loading duty schedule...</div>';
+      
+      try {
+        const res = await window.apiFetch('/api/conductor/trips');
+        if (!res.ok) throw new Error('Failed to fetch trips');
+        const trips = await res.json();
+        
+        if (trips.length === 0) {
+            tripsList.innerHTML = '<div class="p-4 text-center">No trips scheduled for today.</div>';
+            return;
+        }
+
+        tripsList.innerHTML = trips.map(trip => {
+          let statusClass = 'status-gold';
+          let statusIcon = 'schedule';
+          let statusText = trip.status;
+
+          if (trip.status === 'COMPLETED') {
+            statusClass = 'status-mint-glow';
+            statusIcon = 'check_circle';
+          } else if (trip.status === 'ACTIVE') {
+            statusClass = 'status-gold';
+            statusIcon = 'play_circle';
+          }
+
+          return `
+            <div class="p-space-md hover:bg-surface-container-low transition-colors">
+              <div class="flex items-start justify-between mb-space-sm">
+                <div>
+                  <div class="flex items-center gap-2 mb-1">
+                    <span class="inline-block px-2 py-0.5 rounded-full bg-transit-blue-subtle text-secondary font-label-mono-xs font-label-mono-xs font-bold">${trip.bus.busNumber}</span>
+                    <span class="text-title-sm font-title-sm text-primary font-bold">${trip.departureTime}</span>
+                  </div>
+                  <p class="text-body-sm text-on-surface-variant"><strong>${trip.route.origin}</strong> → <strong>${trip.route.destination}</strong></p>
+                  <p class="text-label-mono-xs text-on-surface-variant mt-1">Passengers: ${trip.tickets ? trip.tickets.length : 0} booked</p>
+                </div>
+                <div class="flex items-center gap-1 px-2 py-1 rounded-full bg-surface-container-low border border-outline-variant/40">
+                  <span class="material-symbols-outlined text-sm" style="color: var(--color-${statusClass}, #F59E0B)">${statusIcon}</span>
+                  <span class="text-label-mono-xs font-label-mono-xs text-on-surface font-bold">${statusText}</span>
+                </div>
+              </div>
+            </div>
+          `;
+        }).join('');
+      } catch (err) {
+        console.error(err);
+        tripsList.innerHTML = '<div class="p-4 text-center text-error">Could not load trips.</div>';
+      }
+    }
+
+    // Initialize on load, state.js loads before this usually but wait a tick for safe measure
+    window.addEventListener('load', () => {
+      setTimeout(loadProfile, 100);
+    });
+  </script>
+<script src="state.js"></script>
+</body>
+</html>
+
+

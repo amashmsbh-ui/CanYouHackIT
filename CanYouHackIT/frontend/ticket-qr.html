@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>IIITDMJ Transit - Full Screen QR</title>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com" rel="preconnect"/>
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet"/>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+</head>
+<body class="bg-white flex flex-col items-center justify-center min-h-screen">
+    <div class="text-center p-8 bg-white border border-gray-200 rounded-xl shadow-xl max-w-sm w-full mx-4">
+        <h2 class="text-2xl font-bold mb-4 text-gray-800">Scan Ticket</h2>
+        <div id="qr-container" class="flex justify-center items-center mb-6 min-h-[256px]">
+            <div class="animate-pulse text-gray-400">Loading...</div>
+        </div>
+        <p id="ticket-info" class="text-gray-500 font-mono text-sm mb-6"></p>
+        <button onclick="window.history.back()" class="w-full bg-blue-600 text-white font-bold py-3 rounded-lg hover:bg-blue-700 transition">Go Back</button>
+    </div>
+
+    <script src="state.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', async () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            const ticketId = urlParams.get('id');
+            const container = document.getElementById('qr-container');
+            const info = document.getElementById('ticket-info');
+
+            if (!ticketId) {
+                container.innerHTML = '<span class="text-red-500">No ticket specified.</span>';
+                return;
+            }
+
+            try {
+                // We use the existing my-tickets endpoint and filter it
+                const res = await window.apiFetch('/api/bookings/my-tickets');
+                if (!res.ok) throw new Error('Failed to load tickets');
+                const tickets = await res.json();
+                
+                const ticket = tickets.find(t => t.id === ticketId);
+                if (!ticket) {
+                    container.innerHTML = '<span class="text-red-500">Ticket not found.</span>';
+                    return;
+                }
+
+                container.innerHTML = '';
+                new QRCode(container, {
+                    text: ticket.qrPayload,
+                    width: 256,
+                    height: 256,
+                    correctLevel: QRCode.CorrectLevel.H
+                });
+                
+                info.textContent = `Ticket: ${ticket.ticketNumber}`;
+
+            } catch (err) {
+                container.innerHTML = '<span class="text-red-500">Error loading QR code.</span>';
+            }
+        });
+    </script>
+</body>
+</html>

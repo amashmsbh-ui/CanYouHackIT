@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Register | IIITDMJ Smart Transit &amp; Live Ticket System</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@500;600;700&amp;family=Space+Grotesk:wght@600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "on-primary": "#ffffff",
+            "status-gold-light": "#FEF3C7",
+            "on-tertiary-fixed": "#002113",
+            "on-primary-container": "#7490c3",
+            "primary-container": "#002855",
+            "secondary-fixed": "#cce5ff",
+            "tertiary": "#00190e",
+            "ticket-hologram-violet": "#8B5CF6",
+            "surface-container": "#e0f0ff",
+            "status-gold": "#F59E0B",
+            "on-secondary-container": "#00476e",
+            "surface-container-low": "#ebf5ff",
+            "surface": "#f6faff",
+            "on-surface": "#0e1d28",
+            "institute-navy-mid": "#1E3E62",
+            "tertiary-fixed-dim": "#4edea3",
+            "outline": "#747780",
+            "surface-container-high": "#daeaf9",
+            "background": "#f6faff",
+            "on-tertiary-fixed-variant": "#005236",
+            "status-mint-subtle": "#ECFDF5",
+            "error-container": "#ffdad6",
+            "secondary-container": "#5bb8fe",
+            "surface-variant": "#d4e4f3",
+            "primary-fixed": "#d6e3ff",
+            "surface-dim": "#ccdceb",
+            "transit-blue-subtle": "#E0F2FE",
+            "tertiary-container": "#00301e",
+            "on-secondary": "#ffffff",
+            "inverse-on-surface": "#e5f2ff",
+            "on-error": "#ffffff",
+            "inverse-primary": "#aac7fd",
+            "on-error-container": "#93000a",
+            "on-surface-variant": "#43474f",
+            "primary-fixed-dim": "#aac7fd",
+            "surface-tint": "#415f8f",
+            "institute-navy-dark": "#0B192C",
+            "outline-variant": "#c4c6d0",
+            "surface-card": "#FFFFFF",
+            "surface-bright": "#f6faff",
+            "surface-canvas": "#F8FAFC",
+            "error": "#ba1a1a",
+            "primary": "#001430",
+            "surface-glass-border": "rgba(255, 255, 255, 0.45)",
+            "secondary-fixed-dim": "#93ccff",
+            "on-tertiary": "#ffffff",
+            "surface-container-highest": "#d4e4f3",
+            "tertiary-fixed": "#6ffbbe",
+            "on-tertiary-container": "#00a472",
+            "on-secondary-fixed-variant": "#004b73",
+            "surface-container-lowest": "#ffffff",
+            "inverse-surface": "#23323d",
+            "on-background": "#0e1d28",
+            "secondary": "#006398",
+            "on-secondary-fixed": "#001d31",
+            "on-primary-fixed": "#001b3d",
+            "transit-blue-glow": "#38BDF8",
+            "on-primary-fixed-variant": "#284775",
+            "status-mint-glow": "#34D399",
+            "ticket-hologram-cyan": "#06B6D4"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          "spacing": {
+            "space-xl": "2.25rem",
+            "space-md": "1rem",
+            "space-lg": "1.5rem",
+            "margin-desktop": "3rem",
+            "gutter": "1rem",
+            "space-xs": "0.25rem",
+            "space-sm": "0.5rem",
+            "gutter-desktop": "1.5rem",
+            "margin-tablet": "2rem",
+            "margin": "1rem"
+          },
+          "fontFamily": {
+            "label-mono-xs": ["JetBrains Mono"],
+            "headline-lg-mobile": ["Space Grotesk"],
+            "display-hero-mobile": ["Space Grotesk"],
+            "title-sm": ["Inter"],
+            "ticker-lg": ["JetBrains Mono"],
+            "label-mono": ["JetBrains Mono"],
+            "headline-lg": ["Space Grotesk"],
+            "headline-md": ["Space Grotesk"],
+            "ticker-md": ["JetBrains Mono"],
+            "body-md": ["Inter"],
+            "display-hero": ["Space Grotesk"],
+            "body-lg": ["Inter"],
+            "body-sm": ["Inter"]
+          },
+          "fontSize": {
+            "label-mono-xs": ["10px", {"lineHeight": "12px", "letterSpacing": "0.08em", "fontWeight": "600"}],
+            "headline-lg-mobile": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+            "display-hero-mobile": ["30px", {"lineHeight": "36px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+            "title-sm": ["16px", {"lineHeight": "24px", "letterSpacing": "0em", "fontWeight": "600"}],
+            "ticker-lg": ["28px", {"lineHeight": "32px", "letterSpacing": "-0.04em", "fontWeight": "700"}],
+            "label-mono": ["12px", {"lineHeight": "16px", "letterSpacing": "0.04em", "fontWeight": "500"}],
+            "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+            "headline-md": ["20px", {"lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+            "ticker-md": ["18px", {"lineHeight": "24px", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+            "body-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "400"}],
+            "display-hero": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.03em", "fontWeight": "700"}],
+            "body-lg": ["16px", {"lineHeight": "24px", "letterSpacing": "0em", "fontWeight": "400"}],
+            "body-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "400"}]
+          }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="bg-surface-canvas text-on-surface antialiased min-h-screen flex flex-col justify-between selection:bg-secondary-fixed selection:text-on-secondary-fixed relative overflow-x-hidden font-body-md text-body-md">
+<!-- Ambient Campus Grid & Architectural Graphic Canvas -->
+<div class="fixed inset-0 pointer-events-none z-0 opacity-40">
+<div class="absolute inset-0 bg-[radial-gradient(#002855_1px,transparent_1px)] [background-size:24px_24px]"></div>
+<div class="absolute -top-32 -left-32 w-96 h-96 bg-secondary-fixed rounded-full blur-3xl opacity-30"></div>
+<div class="absolute top-1/2 -right-40 w-[30rem] h-[30rem] bg-surface-container rounded-full blur-3xl opacity-40"></div>
+</div>
+<!-- Top Micro Status Bar / Utility Header -->
+<header class="relative z-10 w-full px-space-md py-space-sm border-b border-surface-variant bg-surface-card/80 backdrop-blur-md">
+<div class="max-w-7xl mx-auto flex items-center justify-between">
+<div class="flex items-center gap-space-sm">
+<span class="inline-block w-2.5 h-2.5 rounded-full bg-status-mint-glow animate-pulse"></span>
+<span class="font-label-mono-xs text-label-mono-xs text-on-surface-variant tracking-wider">GATEWAY NODE 01 • CAMPUS FLEET TELEMETRY ONLINE</span>
+</div>
+<div class="flex items-center gap-space-md">
+<div class="flex items-center gap-1.5 px-2.5 py-1 bg-surface-container-low rounded border border-surface-variant text-on-surface-variant">
+<span class="material-symbols-outlined text-[14px]" data-icon="lock">lock</span>
+<span class="font-label-mono-xs text-label-mono-xs text-on-surface font-semibold">256-BIT SSL ENCRYPTED</span>
+</div>
+<div class="hidden sm:flex items-center gap-1.5 px-2.5 py-1 rounded bg-status-mint-subtle border border-tertiary-fixed-dim/40 text-on-tertiary-fixed-variant">
+<span class="material-symbols-outlined text-[14px] text-tertiary-fixed-dim" data-icon="verified_user">verified_user</span>
+<span class="font-label-mono-xs text-label-mono-xs font-bold">PDPM IIITDMJ SSO</span>
+</div>
+</div>
+</div>
+</header>
+<!-- Main Centered Authentication Journey -->
+<main class="relative z-10 flex-1 flex items-center justify-center px-4 py-8 sm:py-12">
+<div class="w-full max-w-[480px]">
+<!-- Institutional Identity Header -->
+<div class="text-center mb-6">
+<div class="inline-flex items-center justify-center p-3 rounded-xl bg-primary-container shadow-md border border-institute-navy-mid mb-3">
+<span class="material-symbols-outlined text-transit-blue-glow text-3xl" data-icon="person_add">person_add</span>
+</div>
+<h1 class="font-headline-lg-mobile sm:font-headline-lg text-headline-lg-mobile sm:text-headline-lg text-primary tracking-tight">
+          Student Registration
+        </h1>
+<p class="font-body-md text-body-md text-on-surface-variant mt-1">
+          Create your account for Smart Campus Fleet
+        </p>
+</div>
+<!-- Core Login Card (Micro-Glassmorphic Surface Level 1) -->
+<div class="bg-surface-card rounded-xl border border-outline-variant shadow-md overflow-hidden relative">
+<!-- Live Transit Security Banner Ribbon -->
+<div class="bg-primary px-space-md py-2.5 flex items-center justify-between text-on-primary border-b border-institute-navy-mid">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary-fixed text-[18px]" data-icon="badge">badge</span>
+<span class="font-label-mono text-label-mono text-secondary-fixed">INSTITUTE IDENTITY AUTHENTICATION</span>
+</div>
+<span class="font-label-mono-xs text-label-mono-xs bg-institute-navy-mid px-2 py-0.5 rounded text-transit-blue-glow border border-transit-blue-glow/30">v2.4-STABLE</span>
+</div>
+<form id="registerForm" class="p-space-lg space-y-4">
+<div id="registerError" class="hidden bg-error-container text-on-error-container px-3 py-2 rounded text-sm font-semibold mb-2"></div>
+<div id="registerSuccess" class="hidden bg-status-mint-subtle text-on-tertiary-fixed-variant border border-tertiary-fixed-dim/40 px-3 py-2 rounded text-sm font-semibold mb-2"></div>
+
+<div class="space-y-1.5">
+  <div class="flex items-center justify-between">
+  <label class="font-title-sm text-title-sm text-primary flex items-center gap-1.5" for="name">
+                  Full Name
+                  <span class="text-error font-body-sm text-body-sm">*</span>
+  </label>
+  </div>
+  <div class="relative">
+  <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-outline">
+  <span class="material-symbols-outlined text-[20px]" data-icon="person">person</span>
+  </div>
+  <input class="block w-full h-12 pl-11 pr-3.5 rounded-lg border border-outline-variant bg-surface-canvas text-on-surface font-body-md text-body-md placeholder:text-outline focus:border-secondary focus:ring-2 focus:ring-secondary/20 focus:bg-surface-card transition-all" id="name" placeholder="John Doe" required="" type="text"/>
+  </div>
+</div>
+
+<div class="space-y-1.5">
+  <div class="flex items-center justify-between">
+  <label class="font-title-sm text-title-sm text-primary flex items-center gap-1.5" for="rollNumber">
+                  Roll Number
+                  <span class="text-error font-body-sm text-body-sm">*</span>
+  </label>
+  </div>
+  <div class="relative">
+  <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-outline">
+  <span class="material-symbols-outlined text-[20px]" data-icon="pin">pin</span>
+  </div>
+  <input class="block w-full h-12 pl-11 pr-3.5 rounded-lg border border-outline-variant bg-surface-canvas text-on-surface font-body-md text-body-md placeholder:text-outline focus:border-secondary focus:ring-2 focus:ring-secondary/20 focus:bg-surface-card transition-all" id="rollNumber" placeholder="22bcs084" required="" type="text"/>
+  </div>
+</div>
+
+<!-- Institute Email Field Group -->
+<div class="space-y-1.5">
+<div class="flex items-center justify-between">
+<label class="font-title-sm text-title-sm text-primary flex items-center gap-1.5" for="email">
+                Institute Email ID
+                <span class="text-error font-body-sm text-body-sm">*</span>
+</label>
+</div>
+<div class="relative">
+<div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-outline">
+<span class="material-symbols-outlined text-[20px]" data-icon="alternate_email">alternate_email</span>
+</div>
+<input class="block w-full h-12 pl-11 pr-3.5 rounded-lg border border-outline-variant bg-surface-canvas text-on-surface font-body-md text-body-md placeholder:text-outline focus:border-secondary focus:ring-2 focus:ring-secondary/20 focus:bg-surface-card transition-all" id="email" placeholder="roll_number@iiitdmj.ac.in" required="" type="email" />
+</div>
+<!-- Validation Guidance Tooltip -->
+<div class="flex items-center gap-1.5 px-2.5 py-1 rounded bg-surface-container-low border border-surface-variant text-on-secondary-container">
+<span class="material-symbols-outlined text-[15px] text-secondary" data-icon="info">info</span>
+<span class="font-label-mono-xs text-label-mono-xs">Must be an <span class="font-bold underline">@iiitdmj.ac.in</span> email</span>
+</div>
+</div>
+<!-- Password Field Group -->
+<div class="space-y-2 pt-1">
+<div class="flex items-center justify-between">
+<label class="font-title-sm text-title-sm text-primary flex items-center gap-1.5">
+                Set Password
+                <span class="text-error font-body-sm text-body-sm">*</span>
+</label>
+</div>
+<!-- Single Password Field -->
+<div class="relative">
+<div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-outline">
+<span class="material-symbols-outlined text-[20px]" data-icon="lock">lock</span>
+</div>
+<input class="block w-full h-12 pl-11 pr-3.5 rounded-lg border border-outline-variant bg-surface-canvas text-on-surface font-body-md text-body-md placeholder:text-outline focus:border-secondary focus:ring-2 focus:ring-secondary/20 focus:bg-surface-card transition-all" id="password" placeholder="Min 6 characters" required="" type="password"/>
+</div>
+<div class="flex items-center justify-between pt-1">
+<div class="flex flex-col gap-1">
+  <div class="flex items-center gap-1.5 text-on-surface-variant font-body-sm text-body-sm">
+  <span>Already registered?</span>
+  </div>
+  <a class="inline-flex items-center gap-1 font-label-mono-xs text-label-mono-xs text-secondary hover:text-primary transition-colors font-semibold" href="index.html">
+  <span>Login Here</span>
+  <span class="material-symbols-outlined text-[13px]" data-icon="login">login</span>
+  </a>
+</div>
+</div>
+</div>
+<!-- Primary Submit Action Button -->
+<div class="pt-2">
+<button class="w-full h-12 rounded-lg bg-primary-container hover:bg-institute-navy-mid active:scale-[0.98] text-on-primary font-title-sm text-title-sm flex items-center justify-center gap-2 shadow-md transition-all duration-150 relative overflow-hidden group" type="submit">
+<span class="material-symbols-outlined text-[20px] text-transit-blue-glow group-hover:translate-x-0.5 transition-transform" data-icon="person_add">person_add</span>
+<span>Create Account</span>
+<span class="material-symbols-outlined text-[18px] text-transit-blue-glow" data-icon="arrow_forward">arrow_forward</span>
+</button>
+</div>
+</form>
+<!-- Dynamic Micro Anti-Fraud & Offline Sync Footer Ribbon -->
+<div class="bg-surface-container-low px-space-md py-3 border-t border-surface-variant flex flex-col sm:flex-row items-center justify-between gap-2">
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-status-mint-glow text-[16px]" data-icon="cloud_done">cloud_done</span>
+<span class="font-label-mono-xs text-label-mono-xs text-on-surface-variant">Offline caching enabled for saved passes</span>
+</div>
+<div class="flex items-center gap-2 text-on-surface-variant font-label-mono-xs text-label-mono-xs">
+<span class="w-1.5 h-1.5 rounded-full bg-status-gold animate-ping"></span>
+<span>FLEET SYNC: ACTIVE</span>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Institutional Copyright Shell Footer adhering to Shared Components Identity -->
+<footer class="relative z-10 w-full py-space-md px-space-md md:px-margin-desktop border-t border-surface-variant bg-surface-card">
+<div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-space-sm text-center md:text-left">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[18px]" data-icon="school">school</span>
+<p class="font-label-mono-xs text-label-mono-xs text-on-surface-variant">
+          © 2025 PDPM IIITDM Jabalpur. Smart Campus Fleet &amp; Transit Automation Division.
+        </p>
+</div>
+</div>
+</footer>
+<!-- Micro-interaction: Countdown timer script for OTP -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const registerForm = document.getElementById('registerForm');
+      const registerError = document.getElementById('registerError');
+      const registerSuccess = document.getElementById('registerSuccess');
+
+      if (registerForm) {
+        registerForm.addEventListener('submit', async (e) => {
+          e.preventDefault();
+          const email = document.getElementById('email').value.trim();
+          const password = document.getElementById('password').value;
+          const name = document.getElementById('name').value.trim();
+          const rollNumber = document.getElementById('rollNumber').value.trim();
+
+          try {
+            const res = await fetch('/api/auth/register', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ email, password, name, rollNumber })
+            });
+
+            const data = await res.json();
+            if (res.ok) {
+              registerError.classList.add('hidden');
+              registerSuccess.textContent = data.message;
+              registerSuccess.classList.remove('hidden');
+              registerForm.reset();
+              setTimeout(() => {
+                window.location.href = 'index.html';
+              }, 2000);
+            } else {
+              registerSuccess.classList.add('hidden');
+              registerError.textContent = data.error || 'Registration failed';
+              registerError.classList.remove('hidden');
+            }
+          } catch (err) {
+            registerSuccess.classList.add('hidden');
+            registerError.textContent = 'Network error during registration. Make sure the server is running.';
+            registerError.classList.remove('hidden');
+          }
+        });
+      }
+    });
+  </script>
+</body>
+</html>
