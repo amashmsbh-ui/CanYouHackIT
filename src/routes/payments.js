@@ -192,6 +192,11 @@ router.post('/demo-confirm', authenticateToken, async (req, res) => {
       return res.status(401).json({ error: 'User session invalid. Please log in again.' });
     }
 
+    const { tripId } = req.body;
+    if (!tripId) {
+      return res.status(400).json({ error: 'tripId is required.' });
+    }
+
     const result = await req.prisma.$transaction(async (tx) => {
       const user = await tx.user.findUnique({ where: { id: userId } });
       if (!user) throw new Error('User session invalid. Please log in again.');
