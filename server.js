@@ -15,7 +15,12 @@ const io = new Server(server, {
     origin: process.env.ALLOWED_ORIGIN || '*',
   }
 });
-const prisma = new PrismaClient();
+const prisma = new PrismaClient({
+  transactionOptions: {
+    timeout: 30000,   // 30 s – Render free-tier DB can be slow
+    maxWait: 10000,   // wait up to 10 s to acquire transaction slot
+  }
+});
 
 // Middleware
 app.use(cors({
