@@ -11,15 +11,33 @@ function getISTDateString(offsetDays = 0) {
 
 /**
  * Creates 24 hourly trips (00:00 – 23:00) for a given date using
- * the first active bus and route found in the DB.
+ * the active bus and route in the DB.
  */
 async function generateDailyTrips(prisma, dateString) {
-  const bus = await prisma.bus.findFirst({ where: { active: true } });
-  const route = await prisma.route.findFirst({ where: { active: true } });
+  let bus = await prisma.bus.findFirst({ where: { active: true } });
+  if (!bus) {
+    bus = await prisma.bus.upsert({
+      where: { busNumber: 'BUS-01' },
+      update: { active: true },
+      create: {
+        busNumber: 'BUS-01',
+        registrationNumber: 'MP20 ZL1297',
+        capacity: 50,
+        active: true
+      }
+    });
+  }
 
-  if (!bus || !route) {
-    console.warn('[Scheduler] No active bus or route found – skipping trip generation.');
-    return 0;
+  let route = await prisma.route.findFirst({ where: { active: true } });
+  if (!route) {
+    route = await prisma.route.create({
+      data: {
+        name: 'Institute → Sadar via Russel Chowk',
+        origin: 'Institute Main Gate',
+        destination: 'Sadar Cantt Market',
+        active: true
+      }
+    });
   }
 
   let created = 0;
@@ -29,11 +47,12 @@ async function generateDailyTrips(prisma, dateString) {
     const bookingOpenAt  = new Date(departureDT.getTime() - 2 * 60 * 60 * 1000);
     const bookingCloseAt = departureDT;
 
-    // Only create if it doesn't already exist
     const existing = await prisma.trip.findFirst({
       where: { tripDate: dateString, departureTime, busId: bus.id }
     });
     if (existing) continue;
+
+    const isPast = departureDT < new Date();
 
     await prisma.trip.create({
       data: {
@@ -45,7 +64,7 @@ async function generateDailyTrips(prisma, dateString) {
         tripType:      'OUTBOUND',
         capacity:      50,
         fare:          2000, // ₹20 in paise
-        status:        'SCHEDULED',
+        status:        isPast ? 'COMPLETED' : 'SCHEDULED',
         bookingOpenAt,
         bookingCloseAt,
       }
@@ -99,30 +118,25 @@ module.exports = function (prisma, io) {
 
   // ── Every midnight IST: generate tomorrow's hourly trips ─────────────────
   cron.schedule('0 0 * * *', async () => {
-    console.log('[Scheduler] Midnight – generating tomorrow\'s trips...');
+    console.log('[Scheduler] Midnight – generating upcoming trips...');
     try {
-      const tomorrow = getISTDateString(1);
-      const count = await generateDailyTrips(prisma, tomorrow);
-      console.log(`[Scheduler] Created ${count} trips for ${tomorrow}.`);
+      for (let offset = 0; offset <= 7; offset++) {
+        const dateStr = getISTDateString(offset);
+        await generateDailyTrips(prisma, dateStr);
+      }
     } catch (error) {
       console.error('[Scheduler] Daily trip generation failed:', error);
     }
   }, { scheduled: true, timezone: 'Asia/Kolkata' });
 
-  // ── On startup: ensure today AND tomorrow already have trips ─────────────
+  // ── On startup: ensure today + next 7 days have all 24 hourly trips ─────────
   (async () => {
     try {
-      for (const offset of [0, 1]) {
+      for (let offset = 0; offset <= 7; offset++) {
         const dateStr = getISTDateString(offset);
-        const existing = await prisma.trip.count({
-          where: { tripDate: dateStr, status: 'SCHEDULED' }
-        });
-        if (existing === 0) {
-          console.log(`[Scheduler] No trips found for ${dateStr} – auto-generating...`);
-          const count = await generateDailyTrips(prisma, dateStr);
-          console.log(`[Scheduler] Created ${count} trip(s) for ${dateStr}.`);
-        } else {
-          console.log(`[Scheduler] ${existing} scheduled trip(s) already exist for ${dateStr}.`);
+        const count = await generateDailyTrips(prisma, dateStr);
+        if (count > 0) {
+          console.log(`[Scheduler] Generated ${count} hourly trips for ${dateStr}.`);
         }
       }
     } catch (err) {
@@ -130,3 +144,6 @@ module.exports = function (prisma, io) {
     }
   })();
 };
+
+module.exports.generateDailyTrips = generateDailyTrips;
+module.exports.getISTDateString = getISTDateString;

@@ -2,7 +2,9 @@ const express = require('express');
 const router = express.Router();
 const { authenticateToken } = require('./auth');
 
-// Get all active trips for today
+const { generateDailyTrips } = require('../services/scheduler');
+
+// Get all trips for today (24 hourly trips)
 router.get('/', authenticateToken, async (req, res) => {
   try {
     const { prisma } = req;
@@ -11,9 +13,8 @@ router.get('/', authenticateToken, async (req, res) => {
       timeZone: 'Asia/Kolkata'
     }).format(new Date());
     
-    const trips = await prisma.trip.findMany({
+    let trips = await prisma.trip.findMany({
       where: {
-        status: { in: ['SCHEDULED', 'ACTIVE'] },
         tripDate: todayISO,
       },
       include: {
@@ -28,6 +29,26 @@ router.get('/', authenticateToken, async (req, res) => {
       }
     });
 
+    // If trips for today don't exist yet, auto-generate all 24 hours immediately
+    if (trips.length < 24) {
+      await generateDailyTrips(prisma, todayISO);
+      trips = await prisma.trip.findMany({
+        where: {
+          tripDate: todayISO,
+        },
+        include: {
+          route: true,
+          bus: true,
+          _count: {
+            select: { bookings: { where: { status: 'CONFIRMED' } } }
+          }
+        },
+        orderBy: {
+          departureTime: 'asc'
+        }
+      });
+    }
+
     const now = new Date();
 
     // Map trips to include available capacity and booking window status
@@ -41,10 +62,10 @@ router.get('/', authenticateToken, async (req, res) => {
       
       return {
         id: trip.id,
-        route: trip.route.name,
-        origin: trip.route.origin,
-        destination: trip.route.destination,
-        busNumber: trip.bus.busNumber,
+        route: trip.route ? trip.route.name : 'Institute → Sadar via Russel Chowk',
+        origin: trip.route ? trip.route.origin : 'Institute Main Gate',
+        destination: trip.route ? trip.route.destination : 'Sadar Cantt Market',
+        busNumber: trip.bus ? trip.bus.busNumber : 'BUS-01',
         departureTime: trip.departureTime,
         tripDate: trip.tripDate,
         departureAt: departureAt.toISOString(),

@@ -54,11 +54,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     if (token && user) {
-        if (user.mustChangePassword && currentPath !== 'reset-password.html' && currentPath !== 'index.html') {
-            window.location.href = 'reset-password.html';
-            return;
-        }
-
         window.transitUser = user; // Export user globally for other scripts
 
         // Populate user info if elements exist
