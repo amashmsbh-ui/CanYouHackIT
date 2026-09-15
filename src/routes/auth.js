@@ -10,10 +10,25 @@ const authenticateToken = (req, res, next) => {
 
   if (!token) return res.status(401).json({ error: 'Access denied. No token provided.' });
 
-  jwt.verify(token, process.env.JWT_SECRET || 'supersecretjwtkey', (err, user) => {
-    if (err) return res.status(403).json({ error: 'Invalid token.' });
-    req.user = user;
-    next();
+  jwt.verify(token, process.env.JWT_SECRET || 'supersecretjwtkey', async (err, decodedUser) => {
+    if (err) return res.status(401).json({ error: 'Invalid or expired token.' });
+    
+    try {
+      if (req.prisma) {
+        const userId = decodedUser.id || decodedUser.userId;
+        const dbUser = await req.prisma.user.findUnique({ where: { id: userId } });
+        if (!dbUser) {
+          return res.status(401).json({ error: 'Session expired or user account not found. Please log in again.' });
+        }
+        req.user = dbUser;
+      } else {
+        req.user = decodedUser;
+      }
+      next();
+    } catch (dbErr) {
+      req.user = decodedUser;
+      next();
+    }
   });
 };
 

@@ -75,6 +75,11 @@ router.post('/verify', authenticateToken, async (req, res) => {
       return res.status(400).json({ error: 'Invalid payment signature' });
     }
 
+    const userId = req.user.id || req.user.userId;
+    if (!userId) {
+      return res.status(401).json({ error: 'User not authenticated or session invalid.' });
+    }
+
     // Process Booking inside a transaction
     const result = await req.prisma.$transaction(async (tx) => {
       const payment = await tx.payment.findFirst({
@@ -87,15 +92,20 @@ router.post('/verify', authenticateToken, async (req, res) => {
 
       const trip = await tx.trip.findUnique({
         where: { id: tripId },
-        include: { bookings: true }
+        include: { bookings: { where: { status: 'CONFIRMED' } } }
       });
 
       if (!trip || trip.bookings.length >= trip.capacity) {
         throw new Error('Trip not found or fully booked');
       }
 
-      const existingBooking = await tx.booking.findUnique({
-        where: { userId_tripId: { userId: req.user.userId, tripId: tripId } }
+      const user = await tx.user.findUnique({ where: { id: userId } });
+      if (!user) {
+        throw new Error('User account not found. Please log in again.');
+      }
+
+      const existingBooking = await tx.booking.findFirst({
+        where: { userId, tripId, status: { in: ['CONFIRMED', 'BOARDED'] } }
       });
 
       if (existingBooking) {
@@ -114,9 +124,9 @@ router.post('/verify', authenticateToken, async (req, res) => {
       const booking = await tx.booking.create({
         data: {
           bookingReference,
-          userId: req.user.userId,
-          tripId: tripId,
-          seatNumber: seatNumber
+          userId,
+          tripId,
+          seatNumber
         }
       });
 
@@ -138,8 +148,8 @@ router.post('/verify', authenticateToken, async (req, res) => {
         data: {
           ticketNumber,
           bookingId: booking.id,
-          userId: req.user.userId,
-          tripId: tripId,
+          userId,
+          tripId,
           qrPayload
         }
       });
@@ -147,7 +157,7 @@ router.post('/verify', authenticateToken, async (req, res) => {
       // Create Notification
       await tx.notification.create({
         data: {
-          userId: req.user.userId,
+          userId,
           type: 'BOOKING_CONFIRMED',
           title: 'Booking Confirmed',
           message: `Your booking for trip is confirmed. Seat: ${seatNumber}`,
@@ -163,7 +173,7 @@ router.post('/verify', authenticateToken, async (req, res) => {
     const { trip, confirmedBookingsCount } = result;
     const availableSeats = trip.capacity - (confirmedBookingsCount + 1);
     req.io.emit('trip.capacity.updated', { tripId, availableSeats, totalCapacity: trip.capacity });
-    req.io.to(`user_${req.user.userId}`).emit('notification.new');
+    req.io.to(`user_${userId}`).emit('notification.new');
 
     res.json({ success: true, booking: result.booking, ticket: result.ticket });
 
@@ -177,20 +187,21 @@ router.post('/verify', authenticateToken, async (req, res) => {
 // payment link is opened, without needing a signature (demo only).
 router.post('/demo-confirm', authenticateToken, async (req, res) => {
   try {
-    const { tripId } = req.body;
-    const userId = req.user.id; // JWT payload uses `id`, not `userId`
-
-    if (!tripId) {
-      return res.status(400).json({ error: 'tripId is required' });
+    const userId = req.user.id || req.user.userId;
+    if (!userId) {
+      return res.status(401).json({ error: 'User session invalid. Please log in again.' });
     }
 
     const result = await req.prisma.$transaction(async (tx) => {
+      const user = await tx.user.findUnique({ where: { id: userId } });
+      if (!user) throw new Error('User session invalid. Please log in again.');
+
       const trip = await tx.trip.findUnique({
         where: { id: tripId },
         include: { bookings: { where: { status: 'CONFIRMED' } } }
       });
 
-      if (!trip) throw new Error('Trip not found');
+      if (!trip) throw new Error('Trip not found or expired. Please refresh the dashboard.');
       if (trip.bookings.length >= trip.capacity) throw new Error('Trip is fully booked');
 
       // Prevent duplicate booking (use findFirst to avoid compound-key issues)
