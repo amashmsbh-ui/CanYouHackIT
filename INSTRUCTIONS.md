@@ -43,8 +43,9 @@ git push origin main
      ```
    - **Start Command**:
      ```bash
-     npm start
+     node server.js
      ```
+     *(Note: Render runs on Linux, so do not use `.cmd` or `npm.cmd`)*
    - **Instance Type**: `Free`
 
 ### Step 3: Add Environment Variables
