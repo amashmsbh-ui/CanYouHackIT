@@ -82,6 +82,10 @@ app.use((req, res, next) => {
     }
 });
 
+// Auto-initialize DB on startup if empty
+const autoInitDatabase = require('./src/services/dbInit');
+autoInitDatabase(prisma);
+
 const PORT = process.env.PORT || 3000;
 server.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
