@@ -3,7 +3,7 @@
 <html lang="en"><head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Reset Password | IIITDMJ Smart Transit &amp; Live Ticket System</title>
+<title>Login | IIITDMJ Smart Transit &amp; Live Ticket System</title>
 <link href="https://fonts.googleapis.com" rel="preconnect"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@500;600;700&amp;family=Space+Grotesk:wght@600;700&amp;display=swap" rel="stylesheet"/>
@@ -162,13 +162,13 @@
 <!-- Institutional Identity Header -->
 <div class="text-center mb-6">
 <div class="inline-flex items-center justify-center p-3 rounded-xl bg-primary-container shadow-md border border-institute-navy-mid mb-3">
-<span class="material-symbols-outlined text-transit-blue-glow text-3xl" data-icon="key">key</span>
+<span class="material-symbols-outlined text-transit-blue-glow text-3xl" data-icon="directions_bus">directions_bus</span>
 </div>
 <h1 class="font-headline-lg-mobile sm:font-headline-lg text-headline-lg-mobile sm:text-headline-lg text-primary tracking-tight">
-          Reset Password
+          PDPM IIITDM Jabalpur
         </h1>
-<p class="font-body-md text-body-md text-on-surface-variant mt-1" id="reset-msg">
-          Please set a new password to continue.
+<p class="font-body-md text-body-md text-on-surface-variant mt-1">
+          Smart Campus Fleet &amp; Live Transit Portal
         </p>
 </div>
 <!-- Core Login Card (Micro-Glassmorphic Surface Level 1) -->
@@ -181,68 +181,109 @@
 </div>
 <span class="font-label-mono-xs text-label-mono-xs bg-institute-navy-mid px-2 py-0.5 rounded text-transit-blue-glow border border-transit-blue-glow/30">v2.4-STABLE</span>
 </div>
-<form id="resetForm" class="p-space-lg space-y-4">
-<div id="resetError" class="hidden bg-error-container text-on-error-container px-3 py-2 rounded text-sm font-semibold mb-2"></div>
-<div id="resetSuccess" class="hidden bg-status-mint-subtle text-on-tertiary-fixed-variant border border-tertiary-fixed-dim/40 px-3 py-2 rounded text-sm font-semibold mb-2"></div>
-
-<div class="space-y-1.5" id="oldPasswordContainer">
-  <div class="flex items-center justify-between">
-  <label class="font-title-sm text-title-sm text-primary flex items-center gap-1.5" for="oldPassword">
-                  Old Password
-                  <span class="text-error font-body-sm text-body-sm">*</span>
-  </label>
-  </div>
-  <div class="relative">
-  <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-outline">
-  <span class="material-symbols-outlined text-[20px]" data-icon="lock_clock">lock_clock</span>
-  </div>
-  <input class="block w-full h-12 pl-11 pr-3.5 rounded-lg border border-outline-variant bg-surface-canvas text-on-surface font-body-md text-body-md placeholder:text-outline focus:border-secondary focus:ring-2 focus:ring-secondary/20 focus:bg-surface-card transition-all" id="oldPassword" placeholder="Current Password" type="password" />
-  </div>
-</div>
-
+<form id="loginForm" class="p-space-lg space-y-5">
+<div id="loginError" class="hidden bg-error-container text-on-error-container px-3 py-2 rounded text-sm font-semibold mb-2"></div>
+<!-- Institute Email Field Group -->
 <div class="space-y-1.5">
-  <div class="flex items-center justify-between">
-  <label class="font-title-sm text-title-sm text-primary flex items-center gap-1.5" for="newPassword">
-                  New Password
-                  <span class="text-error font-body-sm text-body-sm">*</span>
-  </label>
-  </div>
-  <div class="relative">
-  <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-outline">
-  <span class="material-symbols-outlined text-[20px]" data-icon="lock">lock</span>
-  </div>
-  <input class="block w-full h-12 pl-11 pr-3.5 rounded-lg border border-outline-variant bg-surface-canvas text-on-surface font-body-md text-body-md placeholder:text-outline focus:border-secondary focus:ring-2 focus:ring-secondary/20 focus:bg-surface-card transition-all" id="newPassword" placeholder="Min 6 characters" required="" type="password" />
-  </div>
+<div class="flex items-center justify-between">
+<label class="font-title-sm text-title-sm text-primary flex items-center gap-1.5" for="email">
+                Institute Email ID
+                <span class="text-error font-body-sm text-body-sm">*</span>
+</label>
+<span class="font-label-mono-xs text-label-mono-xs text-secondary font-semibold">STUDENTS &amp; FACULTY</span>
 </div>
-
-<div class="space-y-1.5">
-  <div class="flex items-center justify-between">
-  <label class="font-title-sm text-title-sm text-primary flex items-center gap-1.5" for="confirmPassword">
-                  Confirm New Password
-                  <span class="text-error font-body-sm text-body-sm">*</span>
-  </label>
-  </div>
-  <div class="relative">
-  <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-outline">
-  <span class="material-symbols-outlined text-[20px]" data-icon="lock_reset">lock_reset</span>
-  </div>
-  <input class="block w-full h-12 pl-11 pr-3.5 rounded-lg border border-outline-variant bg-surface-canvas text-on-surface font-body-md text-body-md placeholder:text-outline focus:border-secondary focus:ring-2 focus:ring-secondary/20 focus:bg-surface-card transition-all" id="confirmPassword" placeholder="Must match new password" required="" type="password" />
-  </div>
+<div class="relative">
+<div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-outline">
+<span class="material-symbols-outlined text-[20px]" data-icon="alternate_email">alternate_email</span>
 </div>
-
+<input class="block w-full h-12 pl-11 pr-10 rounded-lg border border-outline-variant bg-surface-canvas text-on-surface font-body-md text-body-md placeholder:text-outline focus:border-secondary focus:ring-2 focus:ring-secondary/20 focus:bg-surface-card transition-all" id="email" placeholder="roll_number@iiitdmj.ac.in" required="" type="email"/>
+<div class="absolute inset-y-0 right-0 pr-3.5 flex items-center text-status-mint-glow">
+<span class="material-symbols-outlined text-[20px]" data-icon="check_circle">check_circle</span>
+</div>
+</div>
+<!-- Validation Guidance Tooltip -->
+<div class="flex items-center gap-1.5 px-2.5 py-1 rounded bg-surface-container-low border border-surface-variant text-on-secondary-container">
+<span class="material-symbols-outlined text-[15px] text-secondary" data-icon="info">info</span>
+<span class="font-label-mono-xs text-label-mono-xs">Use your official <span class="font-bold underline">@iiitdmj.ac.in</span> institutional domain</span>
+</div>
+</div>
+<!-- Segmented 6-Digit OTP Field Group -->
+<div class="space-y-2 pt-1">
+<div class="flex items-center justify-between">
+<label class="font-title-sm text-title-sm text-primary flex items-center gap-1.5">
+                Enter Password
+                <span class="text-error font-body-sm text-body-sm">*</span>
+</label>
+</div>
+<!-- Single Password Field -->
+<div class="relative">
+<div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-outline">
+<span class="material-symbols-outlined text-[20px]" data-icon="lock">lock</span>
+</div>
+<input class="block w-full h-12 pl-11 pr-10 rounded-lg border border-outline-variant bg-surface-canvas text-on-surface font-body-md text-body-md placeholder:text-outline focus:border-secondary focus:ring-2 focus:ring-secondary/20 focus:bg-surface-card transition-all" id="password" placeholder="Password (default: lower case roll no.)" required="" type="password"/>
+</div>
+<!-- Micro Dispatch Status Badge -->
+<div class="flex items-center justify-between pt-1">
+<div class="flex flex-col gap-1">
+  <div class="flex items-center gap-1.5 text-on-surface-variant font-body-sm text-body-sm">
+  <span class="material-symbols-outlined text-[16px] text-outline" data-icon="mark_email_read">mark_email_read</span>
+  <span>Forgot password</span>
+  </div>
+  <a class="inline-flex items-center gap-1 font-label-mono-xs text-label-mono-xs text-secondary hover:text-primary transition-colors font-semibold" href="forgot-password.html">
+  <span>Click Here</span>
+  </a>
+</div>
+<div class="flex flex-col gap-1 items-end">
+  <div class="flex items-center gap-1.5 text-on-surface-variant font-body-sm text-body-sm">
+  <span>New Student?</span>
+  </div>
+  <a class="inline-flex items-center gap-1 font-label-mono-xs text-label-mono-xs text-secondary hover:text-primary transition-colors font-semibold" href="register.html">
+  <span>Register Now</span>
+  <span class="material-symbols-outlined text-[13px]" data-icon="open_in_new">open_in_new</span>
+  </a>
+</div>
+</div>
+</div>
+<!-- Persistence Checkbox -->
+<div class="flex items-start gap-2.5 pt-1">
+<input checked="" class="w-4 h-4 mt-0.5 rounded text-primary border-outline focus:ring-secondary" id="remember" type="checkbox"/>
+<label class="font-body-sm text-body-sm text-on-surface select-none cursor-pointer" for="remember">
+<span class="font-medium text-primary">Remember this device for 30 days (1 month)</span>
+<p class="text-on-surface-variant font-body-sm text-body-sm text-xs">Safe for personal smartphones and registered institute laptops.</p>
+</label>
+</div>
 <!-- Primary Submit Action Button -->
 <div class="pt-2">
 <button class="w-full h-12 rounded-lg bg-primary-container hover:bg-institute-navy-mid active:scale-[0.98] text-on-primary font-title-sm text-title-sm flex items-center justify-center gap-2 shadow-md transition-all duration-150 relative overflow-hidden group" type="submit">
-<span class="material-symbols-outlined text-[20px] text-transit-blue-glow group-hover:translate-x-0.5 transition-transform" data-icon="key">key</span>
-<span>Update Password</span>
+<span class="material-symbols-outlined text-[20px] text-transit-blue-glow group-hover:translate-x-0.5 transition-transform" data-icon="directions_bus">directions_bus</span>
+<span>Verify &amp; Login to Transit</span>
+<span class="material-symbols-outlined text-[18px] text-transit-blue-glow" data-icon="arrow_forward">arrow_forward</span>
 </button>
 </div>
-
-<div class="text-center pt-2">
-  <a class="inline-flex items-center gap-1 font-label-mono-xs text-label-mono-xs text-secondary hover:text-primary transition-colors font-semibold" href="index.html">
-  <span class="material-symbols-outlined text-[13px]" data-icon="arrow_back">arrow_back</span>
-  <span>Back to Login</span>
-  </a>
+<!-- Separator Line -->
+<div class="relative my-4 flex items-center justify-center">
+<div class="border-t border-surface-variant w-full"></div>
+<span class="bg-surface-card px-3 font-label-mono-xs text-label-mono-xs text-outline uppercase tracking-wider">Operational Roles</span>
+</div>
+<!-- Quick Institutional Portals & Emergency Matrix -->
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+<a class="flex items-center justify-between p-2.5 rounded-lg border border-surface-variant bg-surface-canvas hover:bg-surface-container-low transition-colors group" href="#">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px] text-primary" data-icon="badge">badge</span>
+<span class="font-title-sm text-title-sm text-xs text-primary font-medium">Fleet Admin Portal</span>
+</div>
+<span class="material-symbols-outlined text-[16px] text-outline group-hover:text-secondary transition-colors" data-icon="chevron_right">chevron_right</span>
+</a>
+<a class="flex items-center justify-between p-2.5 rounded-lg border border-error-container bg-surface-canvas hover:bg-error-container/20 transition-colors group" href="tel:07612794000">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px] text-error" data-icon="emergency">emergency</span>
+<div class="leading-tight">
+<span class="block font-title-sm text-title-sm text-xs text-error font-medium">Security Gate 1</span>
+<span class="font-label-mono-xs text-label-mono-xs text-on-surface-variant">Helpline SOS</span>
+</div>
+</div>
+<span class="material-symbols-outlined text-[16px] text-error" data-icon="call">call</span>
+</a>
 </div>
 </form>
 <!-- Dynamic Micro Anti-Fraud & Offline Sync Footer Ribbon -->
@@ -257,6 +298,20 @@
 </div>
 </div>
 </div>
+<!-- Assistance & System Diagnostics Notice -->
+<div class="mt-6 text-center space-y-2">
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+          Forgot your institute credentials? Visit the 
+          <a class="text-secondary font-semibold hover:underline" href="#">CCF Helpdesk (Computer Center)</a>
+</p>
+<div class="flex items-center justify-center gap-4 text-outline font-label-mono-xs text-label-mono-xs">
+<span>CAMPUS AP-IS: ONLINE</span>
+<span>•</span>
+<span>LATENCY: 18ms</span>
+<span>•</span>
+<span>IP: 172.26.x.x (INTERNAL)</span>
+</div>
+</div>
 </div>
 </main>
 <!-- Institutional Copyright Shell Footer adhering to Shared Components Identity -->
@@ -268,87 +323,55 @@
           © 2025 PDPM IIITDM Jabalpur. Smart Campus Fleet &amp; Transit Automation Division.
         </p>
 </div>
+<div class="flex items-center gap-space-md font-label-mono-xs text-label-mono-xs text-outline">
+<a class="hover:text-primary transition-colors" href="dashboard.html">Campus Fleet Portal</a>
+<span>•</span>
+<a class="hover:text-primary transition-colors" href="tickets.html">a valid ticket</a>
+<span>•</span>
+<a class="hover:text-primary transition-colors" href="checkout.html">Payment</a>
+</div>
 </div>
 </footer>
 <!-- Micro-interaction: Countdown timer script for OTP -->
+  <script src="state.js"></script>
   <script>
     document.addEventListener('DOMContentLoaded', () => {
-      const resetForm = document.getElementById('resetForm');
-      const resetError = document.getElementById('resetError');
-      const resetSuccess = document.getElementById('resetSuccess');
-      const oldPasswordContainer = document.getElementById('oldPasswordContainer');
-      const oldPasswordInput = document.getElementById('oldPassword');
+      const loginForm = document.getElementById('loginForm');
+      const loginError = document.getElementById('loginError');
 
-      const urlParams = new URLSearchParams(window.location.search);
-      const token = urlParams.get('token');
-
-      let authToken = localStorage.getItem('transit_token');
-      
-      // If we have a URL token, we don't need old password
-      if (token) {
-        oldPasswordContainer.classList.add('hidden');
-        oldPasswordInput.removeAttribute('required');
-        document.getElementById('reset-msg').textContent = "Set a new password for your account.";
-      } else {
-        // We are changing password, require old password
-        oldPasswordInput.setAttribute('required', 'true');
-        document.getElementById('reset-msg').textContent = "Admin requires you to change your default password.";
-      }
-
-      if (resetForm) {
-        resetForm.addEventListener('submit', async (e) => {
+      if (loginForm) {
+        loginForm.addEventListener('submit', async (e) => {
           e.preventDefault();
-          const oldPassword = oldPasswordInput.value;
-          const newPassword = document.getElementById('newPassword').value;
-          const confirmPassword = document.getElementById('confirmPassword').value;
-
-          if (newPassword !== confirmPassword) {
-            resetError.textContent = "New passwords do not match.";
-            resetError.classList.remove('hidden');
-            return;
-          }
-
-          if (newPassword.length < 6) {
-            resetError.textContent = "Password must be at least 6 characters long.";
-            resetError.classList.remove('hidden');
-            return;
-          }
+          const email = document.getElementById('email').value.trim();
+          const password = document.getElementById('password').value;
 
           try {
-            const headers = { 'Content-Type': 'application/json' };
-            if (!token && authToken) {
-              headers['Authorization'] = 'Bearer ' + authToken;
-            }
-
-            const res = await fetch('/api/auth/reset-password', {
+            const loginUrl = window.getApiUrl ? window.getApiUrl('/api/auth/login') : '/api/auth/login';
+            const res = await fetch(loginUrl, {
               method: 'POST',
-              headers,
-              body: JSON.stringify({ token, oldPassword, newPassword })
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ email, password })
             });
 
             const data = await res.json();
             if (res.ok) {
-              resetError.classList.add('hidden');
-              resetSuccess.textContent = data.message;
-              resetSuccess.classList.remove('hidden');
-              resetForm.reset();
+              localStorage.setItem('transit_token', data.token);
+              localStorage.setItem('transit_user', JSON.stringify(data.user));
               
-              // Remove old token and require them to login again just to be safe
-              localStorage.removeItem('transit_token');
-              localStorage.removeItem('transit_user');
-
-              setTimeout(() => {
-                window.location.href = 'index.html';
-              }, 2000);
+              if (data.user.mustChangePassword) {
+                window.location.href = 'reset-password.html';
+              } else if (data.user.role === 'CONDUCTOR') {
+                window.location.href = 'conductor-scan.html';
+              } else {
+                window.location.href = 'dashboard.html';
+              }
             } else {
-              resetSuccess.classList.add('hidden');
-              resetError.textContent = data.error || 'Request failed';
-              resetError.classList.remove('hidden');
+              loginError.textContent = data.error || 'Login failed';
+              loginError.classList.remove('hidden');
             }
           } catch (err) {
-            resetSuccess.classList.add('hidden');
-            resetError.textContent = 'Network error. Make sure the server is running.';
-            resetError.classList.remove('hidden');
+            loginError.textContent = 'Network error during login. Make sure the server is running.';
+            loginError.classList.remove('hidden');
           }
         });
       }

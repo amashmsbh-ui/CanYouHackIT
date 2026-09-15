@@ -1,16 +1,42 @@
-// Initialize before page-specific DOMContentLoaded handlers run.
+// Helper to construct API URLs dynamically based on environment
+window.getApiUrl = (path) => {
+    if (!path) return '';
+    if (path.startsWith('http://') || path.startsWith('https://')) return path;
+    
+    let base = window.API_BASE_URL || '';
+    if (!base) {
+        if (window.location.protocol === 'file:') {
+            base = 'http://localhost:3000';
+        } else if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
+            if (window.location.port && window.location.port !== '3000') {
+                base = 'http://localhost:3000';
+            }
+        }
+    }
+    const cleanPath = path.startsWith('/') ? path : `/${path}`;
+    return base ? `${base}${cleanPath}` : cleanPath;
+};
+
+// Global apiFetch wrapper
 window.apiFetch = async (url, options = {}) => {
-    const apiBase = window.location.protocol === 'file:' ? '' : '';
-    const apiUrl = url.startsWith('http') ? url : `${apiBase}${url.startsWith('/') ? url : `/${url}`}`;
+    const apiUrl = window.getApiUrl(url);
     const headers = new Headers(options.headers || {});
-    headers.set('Authorization', `Bearer ${localStorage.getItem('transit_token') || ''}`);
-    if (options.body && !headers.has('Content-Type')) headers.set('Content-Type', 'application/json');
+    const token = localStorage.getItem('transit_token');
+    if (token) {
+        headers.set('Authorization', `Bearer ${token}`);
+    }
+    if (options.body && !headers.has('Content-Type')) {
+        headers.set('Content-Type', 'application/json');
+    }
 
     const res = await fetch(apiUrl, { ...options, headers });
     if (res.status === 401 || res.status === 403) {
         localStorage.removeItem('transit_token');
         localStorage.removeItem('transit_user');
-        window.location.href = 'index.html';
+        const currentPath = window.location.pathname.split('/').pop();
+        if (currentPath !== 'index.html' && currentPath !== 'register.html' && currentPath !== 'forgot-password.html') {
+            window.location.href = 'index.html';
+        }
     }
     return res;
 };
